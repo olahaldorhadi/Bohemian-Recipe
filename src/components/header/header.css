@@ -1,0 +1,20 @@
+/* Common header styles for both desktop and mobile */
+.header-header {
+    width: 100%;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center; /*center or flex-start*/
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.header-logo-container {
+    height: 15vh;
+}
+
+.header-logo {
+    height: 100%; /* Adjust the height to 100% to fill the container */
+}
