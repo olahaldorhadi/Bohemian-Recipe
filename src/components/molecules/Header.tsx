@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../assets/BR-logo-tr.png';
 
-const Header: React.FC<{}> = () => {
+const Header: React.FC = () => {
   return (
     <div className="w-full bg-black flex items-center justify-center py-1">
         <div className="h-10">
