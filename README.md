@@ -1,27 +1,34 @@
-# React + TypeScript + Vite
+# Delivery instructions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation Instructions
 
-Currently, two official plugins are available:
+1. Install Node.js and npm if not already installed.
+2. Clone repository locally
+3. Navigate to the project directory and run `npm install` to install project dependencies.
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage Instructions
 
-## Expanding the ESLint configuration
+1. After installation, run `npm run dev` to start the development server.
+2. Open your web browser and access the application at the localhost appearing in the terminal.
+3. Click on one of the cards to display more information about the recipe. The search bar is not operable yet, only the pre-programmed cards with recipes. 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
--   Configure the top-level `parserOptions` property like this:
+# Documentation from the developers
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Description of the project Space Spotter
+The project involves a web page with the possibility to display decadent meals and recipes. 
 
--   Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
--   Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
--   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Functional requirements
+The user is presentet with a search bar with the planned possibility to search for whatever one might please to eat. It is also planned to add a filtering possibility in the later version so that the user can filter origin of dish, category (meat, vegetarian, drinks...).  All filter choises will be saved in a local storage later. Responsive design has been a focus point during the development. We started developing the web page in Figma with a focus on design and a great user interface and user experience.
+
+## Technical requirements
+Bohemian Recipe is based on typescript and react. We display regularly on different devices. 
+
+## Development and testing instructions
+We have used Node.js v20.5+ and npm v9.8+ and created the project using vite 4.4 where we used the project type React and Typescript. Through our prosess we have taken advantage of linting and Prettier.  
+
+## Choices of solutions
+No comment here yet as it is early in the development process.
+
+## The work of each developer 
+This has been delivered as requested on BlackBoard. 
