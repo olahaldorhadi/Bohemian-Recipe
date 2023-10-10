@@ -17,17 +17,21 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 }) => {
     return (
         <div
-            className="w-1/5 h-96 rounded-md border-2 border-slate-200 bg-zinc-900"
-            onClick={onClick} // Add onClick event to the div
-            style={{ cursor: 'pointer' }} // Change cursor to indicate it's clickable
+            className="w-full h-96 rounded-md border-8 border-black bg-zinc-900 border-color-orange"
+            onClick={onClick} 
+            style={{ cursor: 'pointer' }} 
         >
             <img
                 src={imgSrc}
                 alt={imgAlt}
                 className="rounded-t-md w-full h-1/2 object-cover"
             />
-            <h2 className="text-2xl m-2">{title}</h2>
-            <p className="mx-2">{category}</p>
+            
+            <div className="p-4 text-white">
+                <h2 className="text-xl font-semibold mb-2">{title}</h2>
+                <hr className="my-2" />
+                <p className="mt-auto">{category}</p>
+            </div>
         </div>
     )
 }
