@@ -21,7 +21,7 @@ const Search = () => {
                 type="text"
                 name="search"
                 id="search"
-                className="block w-full sm:w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-1 focus:ring-inset focus:ring-orange-400 text-xs sm:text-sm sm:leading-6"
+                className="w-full sm:w-full rounded-lg border-2 py-2 text-gray-900 text-sm leading-6 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-white focus:bg-white"
                 placeholder={
                     isMobile
                         ? 'Search...'
@@ -31,5 +31,4 @@ const Search = () => {
         </div>
     )
 }
-
 export default Search
