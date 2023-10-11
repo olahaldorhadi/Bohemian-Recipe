@@ -5,7 +5,6 @@ import Footer from './components/molecules/Footer'
 import DisplayRecipes from './components/atoms/DisplayRecipes'
 
 const App: React.FC = () => {
-
     return (
         <div className="flex flex-col h-screen justify-between">
             <div>

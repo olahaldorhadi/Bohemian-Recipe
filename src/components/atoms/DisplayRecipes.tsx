@@ -19,17 +19,20 @@ const DisplayRecipes: React.FC = () => {
         <div className="recipe-cards flex flex-wrap justify-around p-4 ">
             {Array.isArray(merged_meals.meals) &&
                 merged_meals.meals.map((recipe: IRecipe) => (
-                    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4" key={recipe.idMeal}>
-                    <RecipeCard
+                    <div
+                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4"
                         key={recipe.idMeal}
-                        imgSrc={recipe.strMealThumb}
-                        imgAlt={recipe.strMeal}
-                        title={recipe.strMeal}
-                        category={recipe.strCategory}
-                        onClick={() => handleRecipeCardClick(recipe)}
-                    />
+                    >
+                        <RecipeCard
+                            key={recipe.idMeal}
+                            imgSrc={recipe.strMealThumb}
+                            imgAlt={recipe.strMeal}
+                            title={recipe.strMeal}
+                            category={recipe.strCategory}
+                            onClick={() => handleRecipeCardClick(recipe)}
+                        />
                     </div>
-                ))}
+            ))}
             {selectedRecipe && (
                 <ModalRecipe
                     selectedRecipe={selectedRecipe}
