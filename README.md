@@ -15,7 +15,7 @@
 
 # Documentation from the developers
 
-## Description of the project Space Spotter
+## Description of the project Bohemian Recipe
 The project involves a web page with the possibility to display decadent meals and recipes. 
 
 ## Functional requirements
