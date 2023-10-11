@@ -10,7 +10,6 @@ const Header: React.FC = () => {
                 </a>
             </div>
         </div>
-
     )
 }
 
