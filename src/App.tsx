@@ -3,6 +3,7 @@ import Header from './components/molecules/Header'
 import DinnerPicture from './components/molecules/FeatureSection'
 import Footer from './components/molecules/Footer'
 import DisplayRecipes from './components/atoms/DisplayRecipes'
+import HelloWorld from './HelloWorld'
 
 const App: React.FC = () => {
     return (
@@ -10,6 +11,7 @@ const App: React.FC = () => {
             <div>
                 <Header />
                 <DinnerPicture />
+                <HelloWorld />
                 <DisplayRecipes />
                 <Footer />
             </div>
