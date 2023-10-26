@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Modal } from './Modal'
 
 type RecipeCardProps = {
@@ -20,13 +20,23 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
 }) => {
     const { strMealThumb, imgAlt, title, category, strInstructions } =
         selectedRecipe
+
+useEffect(() => {
+
+            document.body.style.overflow = 'hidden';
+        
+            return () => {
+              document.body.style.overflow = 'auto';
+            };
+          }, []);
+
     return (
         <Modal onClickOut={onClose}>
-            <div className="p-4">
+            <div className="p-4 mx-auto max-w-sm">
                 <img
                     src={strMealThumb}
                     alt={imgAlt}
-                    className="w-full max-w-400 h-80 object-cover mb-4 rounded-lg"
+                    className="w-full h-60 object-cover mb-4 rounded-t-lg"
                 />
                 <p className="text-lg mb-4">{category}</p>
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 text-center">
