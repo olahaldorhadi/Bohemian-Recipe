@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Modal } from './Modal'
+import Rating from '../Rating'
 
 type RecipeCardProps = {
     strMealThumb: string
@@ -21,6 +22,8 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
     const { strMealThumb, imgAlt, title, category, strInstructions } =
         selectedRecipe
 
+const [rating, setRating] = useState<number>(0);
+
 useEffect(() => {
 
             document.body.style.overflow = 'hidden';
@@ -29,7 +32,6 @@ useEffect(() => {
               document.body.style.overflow = 'auto';
             };
           }, []);
-
     return (
         <Modal onClickOut={onClose}>
             <div className="p-4 mx-auto max-w-sm">
@@ -38,6 +40,15 @@ useEffect(() => {
                     alt={imgAlt}
                     className="w-full h-60 object-cover mb-4 rounded-t-lg"
                 />
+                <div className="flex flex-row justify-around">
+                    <Rating
+                    count={5}
+                    value={rating}
+                    edit={true}
+                    onChange={(value) => setRating(value)}
+                />{rating}/5 stars 
+                
+                </div>
                 <p className="text-lg mb-4">{category}</p>
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 text-center">
                     {title}{' '}
