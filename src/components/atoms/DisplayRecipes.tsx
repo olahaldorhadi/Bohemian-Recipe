@@ -14,13 +14,14 @@ const DisplayRecipes: React.FC = () => {
     const handleCloseModal = () => {
         setSelectedRecipe(null)
     }
+    
 
     return (
-        <div className="recipe-cards flex flex-wrap justify-around p-4 ">
+        <div className="recipe-cards flex flex-wrap justify-around p-4">
             {Array.isArray(merged_meals.meals) &&
                 merged_meals.meals.map((recipe: IRecipe) => (
                     <div
-                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4"
+                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4"
                         key={recipe.idMeal}
                     >
                         <RecipeCard
