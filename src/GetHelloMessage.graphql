@@ -1,3 +1,3 @@
 query GetHelloMessage {
-  hello
+    hello
 }
