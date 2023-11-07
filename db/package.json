@@ -1,0 +1,12 @@
+{
+    "name": "db-populator",
+    "version": "1.0.0",
+    "description": "A script to populate MongoDB",
+    "type": "module",
+    "scripts": {
+      "start": "node populateDB.js"
+    },
+    "dependencies": {
+      "mongodb": "^6.2.0"
+    }
+  }
