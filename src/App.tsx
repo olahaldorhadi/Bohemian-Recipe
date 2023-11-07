@@ -2,8 +2,9 @@ import React from 'react'
 import Header from './components/molecules/Header'
 import DinnerPicture from './components/molecules/FeatureSection'
 import Footer from './components/molecules/Footer'
-import HelloWorld from './HelloWorld'
+// import HelloWorld from './HelloWorld'
 import FilterSection from './components/molecules/FilterSection'
+// import GetMeals from './GetMeals'
 
 const App: React.FC = () => {
     return (
@@ -11,7 +12,8 @@ const App: React.FC = () => {
             <div>
                 <Header />
                 <DinnerPicture />
-                <HelloWorld />
+                {/* <HelloWorld /> */}
+                {/* <GetMeals /> */}
                 <FilterSection />
                 <Footer />
             </div>
