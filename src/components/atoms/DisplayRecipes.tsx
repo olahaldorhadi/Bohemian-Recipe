@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import RecipeCard from '../molecules/RecipeCard'
 import ModalRecipe from '../molecules/Modal/ModalRecipe'
-// import merged_meals from '../../assets/merged_meals.json'
-// import { IRecipe } from './IRecipe'
 import { gql, useQuery } from '@apollo/client'
 
 // Query accepts two optional parameters (categories and areas, both are strings)
