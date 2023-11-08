@@ -1,9 +1,13 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import DisplayRecipes from './DisplayRecipes'
 
+const sortOptions = [
+    { name: 'A-Z', current: true },
+    { name: 'Category (A-Z)', current: false },
+]
 const subCategories = [
     { name: 'Vegetarian'},
     { name: 'Beef'},
@@ -18,6 +22,7 @@ const filters = [
         id: 'origin',
         name: 'Origin',
         options: [
+            { value: 'American', label: 'American', checked: false },
             { value: 'British', label: 'British', checked: false },
             { value: 'Canadian', label: 'Canadian', checked: false },
             { value: 'Chinese', label: 'Chinese', checked: false },
@@ -46,6 +51,7 @@ export default function FiltersComp() {
         null
     )
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
+    const [selectedSort, setSelectedSort] = useState<string>("strMeal")
 
     const handleCategoryChange = (category: string) => {
         setSelectedCategory((prevCategory) =>
@@ -61,9 +67,9 @@ export default function FiltersComp() {
         )
     }
 
-    useEffect(() => {
-        console.log(selectedCategory)
-    }, [selectedCategory])
+    const handleSortChange = (sort: string) => {
+        setSelectedSort(sort === "A-Z" ? "strMeal" : "strCategory");
+    }
 
     return (
         <div className="bg-black">
@@ -243,6 +249,15 @@ export default function FiltersComp() {
                                 as="div"
                                 className="relative inline-block text-left"
                             >
+                                <div>
+                                    <Menu.Button className="group inline-flex justify-center text-sm font-medium">
+                                        Sort
+                                        <ChevronDownIcon
+                                        className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                                        aria-hidden="true"
+                                        />
+                                </Menu.Button>
+                                </div>
                                 <Transition
                                     as={Fragment}
                                     enter="transition ease-out duration-100"
@@ -251,7 +266,28 @@ export default function FiltersComp() {
                                     leave="transition ease-in duration-75"
                                     leaveFrom="transform opacity-100 scale-100"
                                     leaveTo="transform opacity-0 scale-95"
-                                ></Transition>
+                                >
+                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div className="py-1">
+                                            {sortOptions.map((option) => (
+                                                <Menu.Item key={option.name}>
+                                                    {({ active }) => (
+                                                        <p
+                                                            onClick={() =>
+                                                                handleSortChange(
+                                                                    option.name
+                                                                )
+                                                            }
+                                                            className="text-black px-2 pt-1"
+                                                        >
+                                                            {option.name}
+                                                        </p>
+                                                    )}
+                                                </Menu.Item>
+                                            ))}
+                                        </div>
+                                    </Menu.Items>
+                                </Transition>
                             </Menu>
                             <button
                                 type="button"
@@ -387,6 +423,7 @@ export default function FiltersComp() {
                                     <DisplayRecipes
                                         selectedCategory={selectedCategory}
                                         selectedAreas={selectedAreas}
+                                        sortOption={selectedSort}
                                     />
                                 }
                             </div>

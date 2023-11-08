@@ -6,8 +6,8 @@ import { gql, useQuery } from '@apollo/client'
 // Query accepts two optional parameters (categories and areas, both are strings)
 // Query should return idMeal, strMeal, strCategory and strArea. Can be expanded to include all necessary information.
 const GET_MEALS = gql`
-    query GetMeals($categories: [String], $areas: [String], $offset: Int!) {
-        meals(categories: $categories, areas: $areas, offset: $offset) {
+    query GetMeals($categories: [String], $areas: [String], $offset: Int!, $sortField: String) {
+        meals(categories: $categories, areas: $areas, offset: $offset, sortField: $sortField) {
             idMeal
             strMeal
             strCategory
@@ -71,6 +71,7 @@ interface Meal {
 interface DisplayRecipesProps {
     selectedCategory: string | null
     selectedAreas: string[]
+    sortOption: string
 }
 
 // All pages should have 12 cards
@@ -79,6 +80,7 @@ const PAGE_SIZE = 12;
 const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     selectedCategory,
     selectedAreas,
+    sortOption
 }) => {
     const [selectedRecipe, setSelectedRecipe] = useState<Meal | null>(null)
     const [currentPage, setCurrentPage] = useState(0);
@@ -89,9 +91,12 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
             categories: selectedCategory ? [selectedCategory] : [],
             areas: selectedAreas,
             offset: currentPage,
+            sortField: sortOption
         },
         notifyOnNetworkStatusChange: true, // To update 'loading' on refetching
     });
+
+    console.log("Sortoption: " + sortOption);
 
     const handleRecipeCardClick = (meal: Meal) => {
         setSelectedRecipe(meal)
