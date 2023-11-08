@@ -53,9 +53,9 @@ export default function FiltersComp() {
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
     const [selectedSort, setSelectedSort] = useState<string>('strMeal')
 
-    const handleCategoryChange = (category: string) => {
+    const handleCategoryChange = (strCategory: string) => {
         setSelectedCategory((prevCategory) =>
-            prevCategory === category ? null : category
+            prevCategory === strCategory ? null : strCategory
         )
     }
 
@@ -132,23 +132,23 @@ export default function FiltersComp() {
                                             role="list"
                                             className="px-2 py-3 font-medium text-por hover:text-orange-600"
                                         >
-                                            {subCategories.map((category) => (
-                                                <li key={category.name}>
+                                            {subCategories.map((strCategory) => (
+                                                <li key={strCategory.name}>
                                                     <p
                                                         onClick={() =>
                                                             handleCategoryChange(
-                                                                category.name
+                                                                strCategory.name
                                                             )
                                                         }
                                                         className={classNames(
                                                             'block px-2 py-2 text-sm cursor-pointer',
                                                             selectedCategory ===
-                                                                category.name
+                                                            strCategory.name
                                                                 ? 'text-orange-400'
                                                                 : 'text-white'
                                                         )}
                                                     >
-                                                        {category.name}
+                                                        {strCategory.name}
                                                     </p>
                                                 </li>
                                             ))}
@@ -323,22 +323,22 @@ export default function FiltersComp() {
                                     role="list"
                                     className="space-y-4 border-b border-gray-200 pb-6 text-sx font-medium text-gray-900 hover:cursor-pointer"
                                 >
-                                    {subCategories.map((category) => (
-                                        <li key={category.name}>
+                                    {subCategories.map((strCategory) => (
+                                        <li key={strCategory.name}>
                                             <p
                                                 onClick={() => {
                                                     handleCategoryChange(
-                                                        category.name
+                                                        strCategory.name
                                                     )
                                                 }}
                                                 className={`${
                                                     selectedCategory ===
-                                                    category.name
+                                                    strCategory.name
                                                         ? 'text-orange-400'
                                                         : 'text-white hover:text-orange-200'
                                                 }`}
                                             >
-                                                {category.name}
+                                                {strCategory.name}
                                             </p>
                                         </li>
                                     ))}
