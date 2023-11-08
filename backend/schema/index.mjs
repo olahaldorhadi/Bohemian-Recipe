@@ -4,7 +4,7 @@ import Meal from '../models/MealModel.js'
 export const typeDefs = gql`
     # Defines how a query should be called (with categories and areas as input parameters) and that it returns a list of meals
     type Query {
-        meals(categories: [String], areas: [String]): [Meal]
+        meals(categories: [String], areas: [String], offset: Int, limit: Int): [Meal]
     }
     type Query {
         mealTitles: [String]
@@ -71,10 +71,12 @@ export const typeDefs = gql`
     }
 `
 
+const PAGE_SIZE = 12; // Set the page size to 12
+
 export const resolvers = {
     Query: {
         // Resolver for the "meals" query field
-        meals: async (_, { categories, areas }) => {
+        meals: async (_, { categories, areas, offset = 0, limit = PAGE_SIZE }) => {
             // Initialize the query object to build a MongoDB query
             let query = {}
 
@@ -90,13 +92,16 @@ export const resolvers = {
                 query.strArea = { $in: areas }
             }
 
+            // Calculate the actual offset based on the provided page number
+            const calculatedOffset = offset * limit;
+
             // Execute the query against the MongoDB database
             try {
-                const meals = await Meal.find(query)
-                return meals // Returns meals
+                const meals = await Meal.find(query).skip(calculatedOffset).limit(limit);
+                return meals;
             } catch (error) {
-                console.error('Error fetching meals:', error) // Log any errors
-                throw new Error('Error fetching meals')
+                console.error('Error fetching meals:', error);
+                throw new Error('Error fetching meals');
             }
         },
         mealTitles: async () => {
