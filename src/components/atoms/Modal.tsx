@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 interface ModalProps {
     id?: string
@@ -21,6 +21,19 @@ export const Modal = ({
             onClickOut()
         }
     }
+
+    useEffect(() => {
+        const handleEscKeyPress = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                onClickOut()
+            }
+        }
+
+        window.addEventListener('keydown', handleEscKeyPress)
+        return () => {
+            window.removeEventListener('keydown', handleEscKeyPress)
+        }
+    }, [onClickOut])
 
     return (
         <div
