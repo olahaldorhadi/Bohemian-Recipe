@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express'
 import Meal from '../models/MealModel.js'
 
 export const typeDefs = gql`
-    # Defines how a query should be called (with categories and areas as input parameters) and that it returns a list of meals
+    # Defines different queries
     type Query {
         meals(categories: [String], areas: [String], offset: Int, limit: Int): [Meal]
     }
@@ -22,8 +22,6 @@ export const typeDefs = gql`
         strArea: String
         strInstructions: String
         strMealThumb: String
-        strTags: String
-        strYoutube: String
         strIngredient1: String
         strIngredient2: String
         strIngredient3: String
@@ -64,10 +62,6 @@ export const typeDefs = gql`
         strMeasure18: String
         strMeasure19: String
         strMeasure20: String
-        strSource: String
-        strImageSource: String
-        strCreativeCommonsConfirmed: String
-        dateModified: String
     }
 `
 

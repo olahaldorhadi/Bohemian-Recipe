@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Modal } from './Modal'
-import Rating from '../Rating'
-import RecipeIngredientBox from '../IngredientBox'
+import Rating from '../molecules/Rating'
+import RecipeIngredientBox from '../molecules/IngredientBox'
 
 type RecipeCardProps = {
     strMealThumb: string
