@@ -1,25 +1,41 @@
 import React from 'react'
 
-const RecipeIngredientBox: React.FC = () => {
-    const ingredients: string[] = []
+export type IngredientBoxProps = {
+  ingredients: string[];
+  measures: string[];
+};
+export const IngredientBox: React.FC<IngredientBoxProps> = ({
+  ingredients,
+  measures
+}) => {
 
     return (
-        <div className="w-56 mx-auto p-4 border border-orange-400 rounded-lg md:mr-8 lg:mr-8 md:w-48">
-            <h2 className="text-lg font-semibold mb-4">Ingredients</h2>
+        <div className="w-64 mx-auto border border-orange-400 rounded-lg p-4 ">
+            <h2 className="text-2xl font-semibold mb-4">Ingredients</h2>
             <ul>
-                <li>4 slices of onion</li>
-                <li>6 freedom of speech</li>
-                <li>1 impeachment</li>
-                <li>33 liberty bells</li>
-                <li>salt</li>
-                {ingredients.map((ingredient, index) => (
-                    <li key={index} className="mb-2">
-                        {ingredient} {/* Placeholder for ingredient */}
-                    </li>
-                ))}
+                {parseIngredients(ingredients, measures)}
             </ul>
         </div>
-    )
-}
+      )
+    }
 
-export default RecipeIngredientBox
+    function parseIngredients(ingredients: string[], measures: string[]): React.JSX.Element {
+      const objectList: Array<React.JSX.Element> = []
+      for (let i=0; i<21; i++){ 
+        if (!(ingredients[i] === "")){
+          objectList.push(
+            <li key={i} className="mb-2 ">
+              {measures[i]} {ingredients[i]}   
+            </li>
+          )}
+        }
+      return (
+        <>
+          {objectList}
+        </>
+      );
+    }
+  
+
+
+export default IngredientBox

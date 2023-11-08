@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Modal } from './Modal'
 import Rating from '../molecules/Rating'
-import RecipeIngredientBox from '../molecules/IngredientBox'
+import IngredientBox from '../molecules/IngredientBox'
 
 type RecipeCardProps = {
     strMealThumb: string
@@ -10,7 +10,48 @@ type RecipeCardProps = {
     strMeal: string
     category: string
     strInstructions: string
+    strIngredient1: string
+    strIngredient2: string
+    strIngredient3: string
+    strIngredient4: string
+    strIngredient5: string
+    strIngredient6: string
+    strIngredient7: string
+    strIngredient8: string
+    strIngredient9: string
+    strIngredient10: string
+    strIngredient11: string
+    strIngredient12: string
+    strIngredient13: string
+    strIngredient14: string
+    strIngredient15: string
+    strIngredient16: string
+    strIngredient17: string
+    strIngredient18: string
+    strIngredient19: string
+    strIngredient20: string
+    strMeasure1: string
+    strMeasure2: string
+    strMeasure3: string
+    strMeasure4: string
+    strMeasure5: string
+    strMeasure6: string
+    strMeasure7: string
+    strMeasure8: string
+    strMeasure9: string
+    strMeasure10: string
+    strMeasure11: string
+    strMeasure12: string
+    strMeasure13: string
+    strMeasure14: string
+    strMeasure15: string
+    strMeasure16: string
+    strMeasure17: string
+    strMeasure18: string
+    strMeasure19: string
+    strMeasure20: string
 }
+
 
 type ModalRecipeProps = {
     selectedRecipe: RecipeCardProps
@@ -23,7 +64,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
 }) => {
     const modalRoot = document.getElementById('modal-root')
 
-    const { strMealThumb, imgAlt, strMeal, category, strInstructions } =
+    const { strMealThumb, imgAlt, strMeal, category, strInstructions, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10, strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15, strIngredient16, strIngredient17, strIngredient18, strIngredient19, strIngredient20, strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5, strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10, strMeasure11, strMeasure12, strMeasure13, strMeasure14, strMeasure15, strMeasure16, strMeasure17, strMeasure18, strMeasure19, strMeasure20} =
         selectedRecipe
 
     const [rating, setRating] = useState<number>(0)
@@ -57,7 +98,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                 </button>
             </div>
             <div className="flex">
-                <div className="mx-auto max-w-fit">
+                <div className="mx-auto max-w-fit p-4">
                     <div className="flex justify-center h-64 md:h-80 lg:h-96">
                         <img
                             src={strMealThumb}
@@ -70,11 +111,15 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                         {strMeal}{' '}
                     </h2>
                     <hr className="border-t-2 border-orange-400 mt-8 w-full" />
-                    <div className="flex flex-col md:flex-row ml-4 mr-8">
-                        <div className="mt-8">
-                            <RecipeIngredientBox />
+                    <div className="flex flex-col md:flex-row">
+                    <div className="mt-8">
+                        <IngredientBox 
+                        ingredients={[strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10, strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15, strIngredient16, strIngredient17, strIngredient18, strIngredient19, strIngredient20]} 
+                        measures={[strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5, strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10, strMeasure11, strMeasure12, strMeasure13, strMeasure14, strMeasure15, strMeasure16, strMeasure17, strMeasure18, strMeasure19, strMeasure20]} 
+                        />
                         </div>
-                        <div className="mt-8">
+
+                        <div className="mt-8 ml-8">
                             <h2 className="text-2xl md:text-2xl lg:text-3xl font-bold mb-2">
                                 Steps
                             </h2>
