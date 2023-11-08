@@ -59,6 +59,6 @@ const MealSchema = new Schema({
 })
 
 // Create Mongoose model
-const Meal = model('Meal', MealSchema, 'recipes')
+const Meal = model('Meal', MealSchema)
 
 export default Meal

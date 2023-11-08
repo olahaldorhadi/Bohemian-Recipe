@@ -4,9 +4,9 @@
     "description": "A script to populate MongoDB",
     "type": "module",
     "scripts": {
-      "start": "node populateDB.js"
+        "start": "node populateDB.js"
     },
     "dependencies": {
-      "mongodb": "^6.2.0"
+        "mongodb": "^6.2.0"
     }
-  }
+}

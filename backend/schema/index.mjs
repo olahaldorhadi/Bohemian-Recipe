@@ -6,6 +6,12 @@ export const typeDefs = gql`
     type Query {
         meals(categories: [String], areas: [String]): [Meal]
     }
+    type Query {
+        mealTitles: [String]
+    }
+    type Query {
+        spesificMeal(mealName: String!): Meal
+    }
 
     # Defines what a meal includes
     type Meal {
@@ -91,6 +97,24 @@ export const resolvers = {
             } catch (error) {
                 console.error('Error fetching meals:', error) // Log any errors
                 throw new Error('Error fetching meals')
+            }
+        },
+        mealTitles: async () => {
+            try {
+                const meals = await Meal.find({}).select('strMeal -_id') // Select only the meal titles, exclude MongoDB's _id field
+                return meals.map((meal) => meal.strMeal) // Extract the titles
+            } catch (error) {
+                console.error('Error fetching meal titles:', error)
+                throw new Error('Error fetching meal titles')
+            }
+        },
+        spesificMeal: async (_, { mealName }) => {
+            try {
+                const meal = await Meal.findOne({ strMeal: mealName })
+                return meal
+            } catch (error) {
+                console.error('Error fetching meal titles:', error)
+                throw new Error('Error fetching meal titles')
             }
         },
     },

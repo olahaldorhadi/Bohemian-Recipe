@@ -1,11 +1,7 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import {
-    FunnelIcon,
-    MinusIcon,
-    PlusIcon,
-} from '@heroicons/react/20/solid'
+import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import DisplayRecipes from '../atoms/DisplayRecipes'
 
 const subCategories = [
@@ -41,7 +37,7 @@ const filters = [
     //         { value: 'Nuts', label: 'Nuts', checked: false },
     //     ],
     // },
-    // {   
+    // {
     //   id: 'size',
     //   name: 'Size',
     //   options: [
@@ -68,10 +64,9 @@ export default function FiltersComp() {
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
 
     const handleCategoryChange = (category: string) => {
-        setSelectedCategory((prevCategory) => {
-            // If the category is already selected, deselect it, otherwise select the new category
-            return prevCategory === category ? null : category
-        })
+        setSelectedCategory((prevCategory) =>
+            prevCategory === category ? null : category
+        )
     }
 
     const handleAreaChange = (area: string) => {
@@ -81,6 +76,10 @@ export default function FiltersComp() {
                 : [...prevAreas, area]
         )
     }
+
+    useEffect(() => {
+        console.log(selectedCategory)
+    }, [selectedCategory])
 
     return (
         <div className="bg-black">
@@ -146,12 +145,18 @@ export default function FiltersComp() {
                                             {subCategories.map((category) => (
                                                 <li key={category.name}>
                                                     <p
-                                                        className="block px-2 py-2 text-white"
-                                                        onClick={() => {
+                                                        onClick={() =>
                                                             handleCategoryChange(
                                                                 category.name
                                                             )
-                                                        }}
+                                                        }
+                                                        className={classNames(
+                                                            'block px-2 py-2 text-sm cursor-pointer',
+                                                            selectedCategory ===
+                                                                category.name
+                                                                ? 'text-orange-400'
+                                                                : 'text-white'
+                                                        )}
                                                     >
                                                         {category.name}
                                                     </p>
@@ -254,7 +259,6 @@ export default function FiltersComp() {
                                 as="div"
                                 className="relative inline-block text-left"
                             >
-
                                 <Transition
                                     as={Fragment}
                                     enter="transition ease-out duration-100"
@@ -263,8 +267,7 @@ export default function FiltersComp() {
                                     leave="transition ease-in duration-75"
                                     leaveFrom="transform opacity-100 scale-100"
                                     leaveTo="transform opacity-0 scale-95"
-                                >
-                                </Transition>
+                                ></Transition>
                             </Menu>
                             <button
                                 type="button"
@@ -304,7 +307,12 @@ export default function FiltersComp() {
                                                         category.name
                                                     )
                                                 }}
-                                                className="text-white"
+                                                className={
+                                                    selectedCategory ===
+                                                    category.name
+                                                        ? 'text-orange-400'
+                                                        : 'text-white'
+                                                }
                                             >
                                                 {category.name}
                                             </p>

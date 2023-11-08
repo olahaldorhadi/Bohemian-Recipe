@@ -15,19 +15,22 @@ async function populateDB() {
 
     const data = JSON.parse(fileContent);
 
-    // Connect to the MongoDB database
-    const client = await MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
-    const db = client.db(dbName);
+        // Connect to the MongoDB database
+        const client = await MongoClient.connect(connectionString, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        const db = client.db(dbName)
 
-    // Insert data into the collection
-    const result = await db.collection(collectionName).insertMany(data); // Ensure 'data' is an array of objects
-    console.log(`${result.insertedCount} documents were inserted`);
+        // Insert data into the collection
+        const result = await db.collection(collectionName).insertMany(data) // Ensure 'data' is an array of objects
+        console.log(`${result.insertedCount} documents were inserted`)
 
-    // Close the connection
-    client.close();
-  } catch (err) {
-    console.error('An error occurred:', err);
-  }
+        // Close the connection
+        client.close()
+    } catch (err) {
+        console.error('An error occurred:', err)
+    }
 }
 
-populateDB();
+populateDB()
