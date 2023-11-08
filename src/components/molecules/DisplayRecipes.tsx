@@ -6,8 +6,18 @@ import { gql, useQuery } from '@apollo/client'
 // Query accepts two optional parameters (categories and areas, both are strings)
 // Query should return idMeal, strMeal, strCategory and strArea. Can be expanded to include all necessary information.
 const GET_MEALS = gql`
-    query GetMeals($categories: [String], $areas: [String], $offset: Int!, $sortField: String) {
-        meals(categories: $categories, areas: $areas, offset: $offset, sortField: $sortField) {
+    query GetMeals(
+        $categories: [String]
+        $areas: [String]
+        $offset: Int!
+        $sortField: String
+    ) {
+        meals(
+            categories: $categories
+            areas: $areas
+            offset: $offset
+            sortField: $sortField
+        ) {
             idMeal
             strMeal
             strCategory
@@ -75,15 +85,15 @@ interface DisplayRecipesProps {
 }
 
 // All pages should have 12 cards
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 12
 
 const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     selectedCategory,
     selectedAreas,
-    sortOption
+    sortOption,
 }) => {
     const [selectedRecipe, setSelectedRecipe] = useState<Meal | null>(null)
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0)
 
     // Does a database call, fetchMore lets you fetch more at a later time
     const { loading, error, data, fetchMore } = useQuery(GET_MEALS, {
@@ -91,12 +101,12 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
             categories: selectedCategory ? [selectedCategory] : [],
             areas: selectedAreas,
             offset: currentPage,
-            sortField: sortOption
+            sortField: sortOption,
         },
         notifyOnNetworkStatusChange: true, // To update 'loading' on refetching
-    });
+    })
 
-    console.log("Sortoption: " + sortOption);
+    console.log('Sortoption: ' + sortOption)
 
     const handleRecipeCardClick = (meal: Meal) => {
         setSelectedRecipe(meal)
@@ -109,26 +119,26 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     // Uses fetchMore to do a database call for the cards on the previous page (last 12 in the database)
     const pageBack = () => {
         if (currentPage > 0) {
-            setCurrentPage(currentPage - 1);
+            setCurrentPage(currentPage - 1)
             fetchMore({
                 variables: {
                     offset: (currentPage - 1) * PAGE_SIZE,
                 },
-            });
+            })
         }
-    };
+    }
 
     // Uses fetchMore to do a database call for the cards on the next page (next 12 in the database)
     const pageForward = () => {
         if (data && data.meals.length === PAGE_SIZE) {
-            setCurrentPage(currentPage + 1);
+            setCurrentPage(currentPage + 1)
             fetchMore({
                 variables: {
                     offset: (currentPage + 1) * PAGE_SIZE,
                 },
-            });
+            })
         }
-    };
+    }
 
     if (loading) return <p>Loading meals...</p>
     if (error) return <p>Error loading meals: {error.message}</p>
@@ -151,10 +161,22 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
                         />
                     </div>
                 ))}
-            <div className='w-full flex justify-center items-center'>
-                <button disabled={currentPage === 0} onClick={pageBack}>⬅</button>
-                <output className='mx-6'>{currentPage + 1}</output>
-                <button disabled={data && data.meals.length < PAGE_SIZE} onClick={pageForward}>➡</button>
+            <div className="w-full flex justify-center items-center color-orange-600">
+                <button
+                    className="bg-orange-400"
+                    disabled={currentPage === 0}
+                    onClick={pageBack}
+                >
+                    ⬅
+                </button>
+                <output className="mx-6">{currentPage + 1}</output>
+                <button
+                    className="bg-orange-400"
+                    disabled={data && data.meals.length < PAGE_SIZE}
+                    onClick={pageForward}
+                >
+                    ➡
+                </button>
             </div>
             {selectedRecipe && (
                 <ModalRecipe
