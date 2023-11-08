@@ -23,9 +23,9 @@ const GET_MEAL_TITLES = gql`
     }
 `
 
-const GET_SPESIFIC_MEAL = gql`
-    query GetSpesificMeal($mealName: String!) {
-        spesificMeal(mealName: $mealName) {
+const GET_SPECIFIC_MEAL = gql`
+    query GetSpecificMeal($mealName: String!) {
+        specificMeal(mealName: $mealName) {
             idMeal
             strMeal
             strCategory
@@ -72,6 +72,7 @@ const GET_SPESIFIC_MEAL = gql`
             strMeasure18
             strMeasure19
             strMeasure20
+            rating
         }
     }
 `
@@ -113,12 +114,12 @@ const Search: React.FC = () => {
         }
     }, [])
 
-    const [GetSpesificMeal, { loading: loadingSearch, error: errorSearch }] =
-        useLazyQuery(GET_SPESIFIC_MEAL, {
+    const [GetSpecificMeal, { loading: loadingSearch, error: errorSearch }] =
+        useLazyQuery(GET_SPECIFIC_MEAL, {
             onCompleted: (data) => {
                 // Data will be available here after the query completes
-                setSelectedRecipe(data.spesificMeal)
-                console.log(data.spesificMeal)
+                setSelectedRecipe(data.specificMeal)
+                console.log(data.specificMeal)
             },
         })
 
@@ -143,7 +144,7 @@ const Search: React.FC = () => {
     if (errorSearch) return <p>Error: {errorSearch.message}</p>
 
     const handleItemClick = (mealName: string) => {
-        GetSpesificMeal({ variables: { mealName } })
+        GetSpecificMeal({ variables: { mealName } })
     }
 
     return (

@@ -64,6 +64,7 @@ const GET_MEALS = gql`
             strMeasure18
             strMeasure19
             strMeasure20
+            rating
         }
     }
 `
@@ -75,6 +76,7 @@ interface Meal {
     strCategory: string
     strArea: string
     strMealThumb: string
+    rating: [number]
 }
 
 // Defines props
@@ -158,6 +160,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
                             title={meal.strMeal}
                             category={meal.strCategory}
                             onClick={() => handleRecipeCardClick(meal)}
+                            rating={meal.rating}
                         />
                     </div>
                 ))}
@@ -181,6 +184,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
             {selectedRecipe && (
                 <ModalRecipe
                     selectedRecipe={selectedRecipe}
+                    mealId={selectedRecipe.idMeal}
                     onClose={handleCloseModal}
                     imgSrc={selectedRecipe.strMealThumb}
                 />

@@ -6,19 +6,16 @@ Link to VM
 
 # Table of Contents
 
-
-- [Installation Instructions for running project locally](#installation-instructions-for-running-project-locally)
-- [Usage Instructions](#usage-instructions)
-- [Documentation from the developers](#documentation-from-the-developers)
-  - [Description of the project Bohemian Recipe](#description-of-the-project-bohemian-recipe)
-  - [Functional Requirements](#functional-requirements)
-  - [Technical Requirements](#technical-requirements)
-  - [Development and Testing Instructions](#development-and-testing-instructions)
-  - [Choices for Solutions](#choices-for-solutions)
-  - [Testing, Development, and Quality Control](#testing-development-and-quality-control)
-  - [The Work of Each Developer](#the-work-of-each-developer)
-
-
+-   [Installation Instructions for running project locally](#installation-instructions-for-running-project-locally)
+-   [Usage Instructions](#usage-instructions)
+-   [Documentation from the developers](#documentation-from-the-developers)
+    -   [Description of the project Bohemian Recipe](#description-of-the-project-bohemian-recipe)
+    -   [Functional Requirements](#functional-requirements)
+    -   [Technical Requirements](#technical-requirements)
+    -   [Development and Testing Instructions](#development-and-testing-instructions)
+    -   [Choices for Solutions](#choices-for-solutions)
+    -   [Testing, Development, and Quality Control](#testing-development-and-quality-control)
+    -   [The Work of Each Developer](#the-work-of-each-developer)
 
 ## Installation Instructions for running project locally
 
@@ -34,33 +31,32 @@ Link to VM
 
 ## Usage Instructions
 
-1. Welcome to Bohemian Recipe. This webpage can help you access recipes retreived from the MealDB. You can now search, filter and sort different types of recipes. 
+1. Welcome to Bohemian Recipe. This webpage can help you access recipes retreived from the MealDB. You can now search, filter and sort different types of recipes.
 
 2. Click on one of the cards to display the full recipe.
 
 3. Did you like a recipe? Or maybe the recipe was absolutely gahstly? You can now leave a star feedback inside each recipe, either to encurage or warn fellow foodies.
 
-
 # Documentation from the developers
 
 ## Description of the project Bohemian Recipe
 
-The project involves a web page that retreives and display recipes from the MealDB. 
+The project involves a web page that retreives and display recipes from the MealDB.
 
 ## Functional requirements
 
-The user is presentet with a search bar with the possibility to search for whatever one might please to eat. You can also use the filter and sorting options. This will effect the whole dataset. Once you have med your selection you are presented with different types of recipes you can interact with. The webpage will only display 12 recipes at the time, and you have the possibility to browse through pages. The user can click on a recipe card to display more information and even give a rating. This rating will effect the overall score of each recipe when utilized. 
+The user is presentet with a search bar with the possibility to search for whatever one might please to eat. You can also use the filter and sorting options. This will effect the whole dataset. Once you have med your selection you are presented with different types of recipes you can interact with. The webpage will only display 12 recipes at the time, and you have the possibility to browse through pages. The user can click on a recipe card to display more information and even give a rating. This rating will effect the overall score of each recipe when utilized.
 
-In regards to user accessability have we tried to be as consistent in using clear HTML-tags in our work so our web page can be read by screen readers. We have also been careful in our selection of our fonts, colors and shapes. 
+In regards to user accessability have we tried to be as consistent in using clear HTML-tags in our work so our web page can be read by screen readers. We have also been careful in our selection of our fonts, colors and shapes.
 
-About sustainability 
-in our fuzzy search we only sort through the recipes using the titles only. We also included pagenation so that the client dont get the whole dataset when using our webpage. 
+About sustainability
+in our fuzzy search we only sort through the recipes using the titles only. We also included pagenation so that the client dont get the whole dataset when using our webpage.
 
- Responsive design has been a focus point during the development. We started developing the web page in Figma with a focus on design and a great user interface and experience. For developing our design further we have taken inspiration from popular recipe pages and focused on simplicity and delicate colours. 
+Responsive design has been a focus point during the development. We started developing the web page in Figma with a focus on design and a great user interface and experience. For developing our design further we have taken inspiration from popular recipe pages and focused on simplicity and delicate colours.
 
 ## Technical requirements
 
-Bohemian Recipe is based on React and programmed in TypeScript. The project is set up with Vite and we have used state managment in the form of apollo local state management. We have set up our own database using MongoDB where we use GraphQL to make queries and mutations. Regarding our use of components, we have used both self made components in addition to a component from TailwindUI (filterSection). We also decided to try something new and implemented the use of TailwindCSS. This was a unanumous decision based on the fact that the group wanted to learn more about styling. 
+Bohemian Recipe is based on React and programmed in TypeScript. The project is set up with Vite and we have used state managment in the form of apollo local state management. We have set up our own database using MongoDB where we use GraphQL to make queries and mutations. Regarding our use of components, we have used both self made components in addition to a component from TailwindUI (filterSection). We also decided to try something new and implemented the use of TailwindCSS. This was a unanumous decision based on the fact that the group wanted to learn more about styling.
 
 ## Development and testing instructions
 
@@ -68,10 +64,11 @@ We have used Node.js v20.5+ and npm v10.2.2 and created the project using vite 4
 
 ## Choices for solutions
 
-We used MongoDB, a popular NoSQL database, as we found the most documentation using this service. Furthermore we used GraphQL and Apollo Client, as we found these to interact beautifully. 
+We used MongoDB, a popular NoSQL database, as we found the most documentation using this service. Furthermore we used GraphQL and Apollo Client, as we found these to interact beautifully.
 
 ## Testing, developement and quality control
-We utilized linting and usage of Prettier through out our second project period. We have not prioritized testing in this iteration, however we plan on implementing this in the third and final iteration. This to the advantage of backend development. We included a extensive README-file (congratulations on reading this far). We have discussed, explained and referred to our most important choices and solutions in regards, but not limited to, components and API. We have also had reviews where a group member had the sole task of simplifying and structuting the code. Commenting the code is something the group as a whole will improve to the next iteration. 
+
+We utilized linting and usage of Prettier through out our second project period. We have not prioritized testing in this iteration, however we plan on implementing this in the third and final iteration. This to the advantage of backend development. We included a extensive README-file (congratulations on reading this far). We have discussed, explained and referred to our most important choices and solutions in regards, but not limited to, components and API. We have also had reviews where a group member had the sole task of simplifying and structuting the code. Commenting the code is something the group as a whole will improve to the next iteration.
 
 ## The work of each developer
 
