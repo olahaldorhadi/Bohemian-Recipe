@@ -51,6 +51,11 @@ const MealSchema = new Schema({
     strMeasure18: String,
     strMeasure19: String,
     strMeasure20: String,
+    strSource: String,
+    strImageSource: String,
+    strCreativeCommonsConfirmed: String,
+    dateModified: Date,
+    rating: [Number],
 })
 
 // Create Mongoose model

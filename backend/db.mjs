@@ -5,7 +5,7 @@ export async function connectToDB() {
     try {
         // Attempt to connect to database
         await mongoose.connect(
-            'mongodb://readonly:readonly@129.241.104.136:27017/MealsDB?authSource=admin', // connection string
+            'mongodb://otto:ottopass@129.241.104.136:27017/MealsDB?authSource=admin', // connection string
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { Modal } from './Modal'
 import Rating from '../molecules/Rating'
 import IngredientBox from '../molecules/IngredientBox'
+import { setLocalRating, getLocalRating } from '../../utils/localStorageUtil.ts'
+import { gql, useMutation, useLazyQuery } from '@apollo/client'
 
 type RecipeCardProps = {
     strMealThumb: string
@@ -54,14 +56,52 @@ type RecipeCardProps = {
 
 type ModalRecipeProps = {
     selectedRecipe: RecipeCardProps
+    mealId: string
     onClose: () => void
 }
 
+const GET_SPECIFIC_MEAL_RATING = gql`
+    query GetSpecificMealRating($mealId: String!) {
+        specificMealRating(mealId: $mealId)
+    }
+`
+
+const UPDATE_MEAL_MUTATION = gql`
+    mutation UpdateSpecificMealRating($mealId: String!, $rating: [Int]) {
+        updateSpecificMealRating(mealId: $mealId, rating: $rating) {
+            idMeal
+            rating
+        }
+    }
+`
+
 const ModalRecipe: React.FC<ModalRecipeProps> = ({
     selectedRecipe,
+    mealId,
     onClose,
 }) => {
     const modalRoot = document.getElementById('modal-root')
+
+    const [specificRating, setSpecificRating] = useState<number[]>([])
+
+    const [
+        GetSpecificMealRating,
+        { data: ratingData, loading: loadingRating, error: errorRating },
+    ] = useLazyQuery(GET_SPECIFIC_MEAL_RATING, {
+        variables: { mealId: mealId },
+        onCompleted: (data) => {
+            // Now data.specificMealRating should be directly an array of integers
+            setSpecificRating(data.specificMealRating)
+            console.log('Data rating in lazy query:', data.specificMealRating)
+        },
+    })
+    const [updateRating] = useMutation(UPDATE_MEAL_MUTATION)
+
+    // const {loading, error, data} = useQuery(GET_SPECIFIC_MEAL_RATING, {
+    //     variables: {
+    //         mealId: mealId,
+    //     }
+    // })
 
     const {
         strMealThumb,
@@ -111,7 +151,67 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
         strMeasure20,
     } = selectedRecipe
 
-    const [rating, setRating] = useState<number>(0)
+    function ratingFunction(newValue: number) {
+        console.log('new value ' + newValue)
+        const localRating = getLocalRating(mealId)
+        if (localRating !== 0 && localRating !== newValue) {
+            //If the user has already given another rating (will not run if you click the same rating twice to save the climate)
+            GetSpecificMealRating({ variables: { mealId } })
+            let oldRatings = specificRating
+            console.log(
+                'The ratings before the mutation are as follows: ' + oldRatings
+            )
+            let found = false // This flag will indicate whether the rating was already removed
+
+            // Remove only the first occurrence of the localRating
+            oldRatings = oldRatings.filter((rating) => {
+                if (!found && rating === localRating) {
+                    found = true // Set the flag to true after removing the rating
+                    return false // Remove this rating
+                }
+                return true // Keep all other ratings
+            })
+
+            // Add the new rating
+            oldRatings.push(newValue)
+            updateRating({
+                variables: {
+                    mealId: mealId,
+                    rating: oldRatings, // Make sure this is an array of integers
+                },
+            })
+                .then((response) => {
+                    console.log(
+                        'Rating updated',
+                        response.data.updateSpecificMealRating
+                    )
+                })
+                .catch((error) => {
+                    console.error('Error updating rating', error)
+                    console.error('GraphQL Error:', error.graphQLErrors)
+                    console.error('Network Error:', error.networkError)
+                })
+        }
+        console.log(
+            'Localstorage verdien var før endring: ' + getLocalRating(mealId)
+        )
+        setLocalRating(mealId, newValue) // Sets the localStorage rating
+        console.log('Localstorage verdien er: ' + getLocalRating(mealId))
+    }
+
+    useEffect(() => {
+        GetSpecificMealRating()
+    }, [mealId, GetSpecificMealRating])
+
+    useEffect(() => {
+        if (!loadingRating && !errorRating && ratingData) {
+            setSpecificRating(ratingData.specificMealRating)
+            console.log(
+                'Data rating in lazy query:',
+                ratingData.specificMealRating
+            )
+        }
+    }, [ratingData, loadingRating, errorRating])
 
     useEffect(() => {
         document.body.style.overflow = 'hidden'
@@ -226,11 +326,15 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                             </h2>
                             <Rating
                                 count={5}
-                                value={rating}
+                                value={getLocalRating(mealId)}
                                 edit={true}
-                                onChange={(value) => setRating(value)}
+                                onChange={(newValue) =>
+                                    ratingFunction(newValue)
+                                }
                             />
-                            <span className="text-lg">{rating}/5 stars</span>
+                            <span className="text-lg">
+                                {getLocalRating(mealId)}/5 stars
+                            </span>
                         </div>
                     </div>
                 </div>

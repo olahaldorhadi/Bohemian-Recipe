@@ -16,7 +16,13 @@ export const typeDefs = gql`
         mealTitles: [String]
     }
     type Query {
-        spesificMeal(mealName: String!): Meal
+        specificMeal(mealName: String!): Meal
+    }
+    type Query {
+        specificMealRating(mealId: String!): [Int]
+    }
+    type Mutation {
+        updateSpecificMealRating(mealId: String!, rating: [Int]): Meal
     }
 
     # Defines what a meal includes
@@ -68,12 +74,29 @@ export const typeDefs = gql`
         strMeasure18: String
         strMeasure19: String
         strMeasure20: String
+        strSource: String
+        strImageSource: String
+        strCreativeCommonsConfirmed: String
+        dateModified: String
+        rating: [Int]
     }
 `
 
 const PAGE_SIZE = 12 // Set the page size to 12
 
 export const resolvers = {
+    Mutation: {
+        updateSpecificMealRating: async (_, { mealId, rating }) => {
+            try {
+                const meal = await Meal.findOne({ idMeal: mealId })
+                meal.rating = rating
+                const updatedMeal = await meal.save()
+                return updatedMeal
+            } catch (Error) {
+                throw new Error('Error finding meal with id', Error)
+            }
+        },
+    },
     Query: {
         // Resolver for the "meals" query field
         meals: async (
@@ -128,13 +151,24 @@ export const resolvers = {
                 throw new Error('Error fetching meal titles')
             }
         },
-        spesificMeal: async (_, { mealName }) => {
+        specificMeal: async (_, { mealName }) => {
             try {
                 const meal = await Meal.findOne({ strMeal: mealName })
                 return meal
             } catch (error) {
                 console.error('Error fetching meal titles:', error)
                 throw new Error('Error fetching meal titles')
+            }
+        },
+        specificMealRating: async (_, { mealId }) => {
+            try {
+                const meal = await Meal.findOne({ idMeal: mealId })
+                if (!meal) {
+                    throw new Error('Meal not found')
+                }
+                return meal.rating
+            } catch (error) {
+                throw new Error(`Error fetching meal with ID: ${mealId}`)
             }
         },
     },
