@@ -5,12 +5,12 @@ import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import DisplayRecipes from '../atoms/DisplayRecipes'
 
 const subCategories = [
-    { name: 'Vegetarian' },
-    { name: 'Beef' },
-    { name: 'Seafood' },
-    { name: 'Chicken' },
-    { name: 'Side' },
-    { name: 'Pasta' },
+    { name: 'Vegetarian'},
+    { name: 'Beef'},
+    { name: 'Seafood'},
+    { name: 'Chicken'},
+    { name: 'Side'},
+    { name: 'Pasta'},
     { name: 'Dessert' },
 ]
 const filters = [
@@ -25,30 +25,6 @@ const filters = [
             { value: 'Canadian', label: 'Canadian', checked: false },
         ],
     },
-    // IN CASE WE NEED TWO MORE FILTER SECTION
-    // {
-    //     id: 'allergens',
-    //     name: 'Exclude allergens',
-    //     options: [
-    //         { value: 'Milk', label: 'Milk', checked: false },
-    //         { value: 'Flour', label: 'Flour', checked: false },
-    //         { value: 'Onion', label: 'Onion', checked: false },
-    //         { value: 'Eggs', label: 'Eggs', checked: false },
-    //         { value: 'Nuts', label: 'Nuts', checked: false },
-    //     ],
-    // },
-    // {
-    //   id: 'size',
-    //   name: 'Size',
-    //   options: [
-    //     { value: '2l', label: '2L', checked: false },
-    //     { value: '6l', label: '6L', checked: false },
-    //     { value: '12l', label: '12L', checked: false },
-    //     { value: '18l', label: '18L', checked: false },
-    //     { value: '20l', label: '20L', checked: false },
-    //     { value: '40l', label: '40L', checked: false },
-    //   ],
-    // },
 ]
 
 function classNames(...classes: string[]) {
@@ -297,7 +273,7 @@ export default function FiltersComp() {
                                 <h3 className="sr-only">Allergens</h3>
                                 <ul
                                     role="list"
-                                    className="space-y-4 border-b border-gray-200 pb-6 text-sx font-medium text-gray-900"
+                                    className="space-y-4 border-b border-gray-200 pb-6 text-sx font-medium text-gray-900 hover:cursor-pointer "
                                 >
                                     {subCategories.map((category) => (
                                         <li key={category.name}>

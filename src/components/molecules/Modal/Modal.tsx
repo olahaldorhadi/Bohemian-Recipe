@@ -31,7 +31,7 @@ export const Modal = ({
             <div
                 {...otherProps}
                 id={id}
-                className="modal bg-white rounded-t-lg shadow-lg p-6 w-2/3 max-h-full overflow-y-auto border border-orange-400"
+                className="modal bg-white rounded-lg shadow-lg p-6 w-full md:w-3/4 max-w-3/ max-h-full overflow-y-auto border border-orange-400"
             >
                 {children}
             </div>

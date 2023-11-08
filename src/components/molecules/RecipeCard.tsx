@@ -17,7 +17,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 }) => {
     return (
         <div
-            className="w-full h-96 rounded-md border-8 border-black bg-zinc-900 border-color-orange"
+            className="w-full h-96 rounded-xl border-8 border-black bg-zinc-900 border-color-orange"
             onClick={onClick}
             style={{ cursor: 'pointer' }}
         >

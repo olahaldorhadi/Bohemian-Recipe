@@ -95,11 +95,11 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     if (error) return <p>Error loading meals: {error.message}</p>
 
     return (
-        <div className="recipe-cards flex flex-wrap justify-around p-4">
+        <div className="recipe-cards flex flex-wrap justify-around p-4 rounded-full">
             {Array.isArray(data?.meals) &&
                 data?.meals.map((meal: Meal) => (
                     <div
-                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4"
+                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4 "
                         key={meal.idMeal}
                     >
                         <RecipeCard

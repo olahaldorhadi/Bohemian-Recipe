@@ -1,19 +1,20 @@
 //alternatively modify and run this: mongoimport --db MealsDB --collection recipes --file /Users/OttoHF/Desktop/Informatikk_bach/Sem3/Webdev/prosjekt-2/src/assets/all_meals.json --jsonArray
 
-import { MongoClient } from 'mongodb';
-import fs from 'fs';
+import { MongoClient } from 'mongodb'
+import fs from 'fs'
 
 async function populateDB() {
-  const connectionString = 'mongodb://otto:ottopass@129.241.104.136:27017/MealsDB?authSource=admin'; // Now I know some people might not consider this quite secure, but this isn't a security course
-  const dbName = 'MealsDB'; // Replace with your database name
-  const collectionName = 'meals';
-  const filePath = './all_meals_cleaned_no_numbers.json'; // Replace
+    const connectionString =
+        'mongodb://otto:ottopass@129.241.104.136:27017/MealsDB?authSource=admin' // Now I know some people might not consider this quite secure, but this isn't a security course
+    const dbName = 'MealsDB' // Replace with your database name
+    const collectionName = 'meals'
+    const filePath = './all_meals_cleaned_no_numbers.json' // Replace
 
-  try {
-    // Read the JSON file
-    const fileContent = await fs.promises.readFile(filePath, 'utf8');
+    try {
+        // Read the JSON file
+        const fileContent = await fs.promises.readFile(filePath, 'utf8')
 
-    const data = JSON.parse(fileContent);
+        const data = JSON.parse(fileContent)
 
         // Connect to the MongoDB database
         const client = await MongoClient.connect(connectionString, {
