@@ -2,7 +2,7 @@ export type Recipe = {
     //Not sure if this will be used
     key: number // Such as 52930
     name: string // Such as "Pate Chinois"
-    category: string // Such as "Beef"
+    strCategory: string // Such as "Beef"
     area: string // Such as "Canadian"
     instructions: string // Such as "In a large pot of salted water, cook the potatoes until they are very tender. Drain."
     image: string // URL such as https://www.themealdb.com/images/media/meals/yyrrxr1511816289.jpg

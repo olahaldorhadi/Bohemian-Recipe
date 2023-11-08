@@ -1,10 +1,10 @@
 import React from 'react'
 
 type RecipeCardProps = {
-    imgSrc: string
+    strMealThumb: string
     imgAlt: string
     title: string
-    category: string
+    strCategory: string
     onClick?: () => void // Add onClick prop to the props type
     rating: [number]
 }
@@ -18,10 +18,10 @@ function calculateAverage(ratings: [number]) {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({
-    imgSrc,
+    strMealThumb,
     imgAlt,
     title,
-    category,
+    strCategory,
     onClick,
     rating,
 }) => {
@@ -32,7 +32,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
             style={{ cursor: 'pointer' }}
         >
             <img
-                src={imgSrc}
+                src={strMealThumb}
                 alt={imgAlt}
                 className="rounded-t-md w-full h-1/2 object-cover"
             />
@@ -40,7 +40,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
             <div className="p-4 text-white">
                 <h2 className="text-xl font-semibold mb-2">{title}</h2>
                 <hr className="my-2" />
-                <p className="mt-auto">{category}</p>
+                <p className="mt-auto">{strCategory}</p>
                 <p className="mt-auto">
                     ★ {calculateAverage(rating).toFixed(2)} / 5
                 </p>

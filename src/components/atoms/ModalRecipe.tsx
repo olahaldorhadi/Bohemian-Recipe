@@ -6,11 +6,13 @@ import IngredientBox from '../molecules/IngredientBox'
 import { setLocalRating, getLocalRating } from '../../utils/localStorageUtil.ts'
 import { gql, useMutation, useLazyQuery } from '@apollo/client'
 
-type RecipeCardProps = {
+export type RecipeCardProps = {
+    idMeal: string
     strMealThumb: string
     imgAlt: string
     strMeal: string
-    category: string
+    strCategory: string
+    strArea: string
     strInstructions: string
     strIngredient1: string
     strIngredient2: string
@@ -54,7 +56,7 @@ type RecipeCardProps = {
     strMeasure20: string
 }
 
-type ModalRecipeProps = {
+export type ModalRecipeProps = {
     selectedRecipe: RecipeCardProps
     mealId: string
     onClose: () => void
@@ -92,22 +94,15 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
         onCompleted: (data) => {
             // Now data.specificMealRating should be directly an array of integers
             setSpecificRating(data.specificMealRating)
-            console.log('Data rating in lazy query:', data.specificMealRating)
+            
         },
     })
     const [updateRating] = useMutation(UPDATE_MEAL_MUTATION)
-
-    // const {loading, error, data} = useQuery(GET_SPECIFIC_MEAL_RATING, {
-    //     variables: {
-    //         mealId: mealId,
-    //     }
-    // })
 
     const {
         strMealThumb,
         imgAlt,
         strMeal,
-        category,
         strInstructions,
         strIngredient1,
         strIngredient2,
@@ -152,15 +147,13 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
     } = selectedRecipe
 
     function ratingFunction(newValue: number) {
-        console.log('new value ' + newValue)
+       
         const localRating = getLocalRating(mealId)
         if (localRating !== 0 && localRating !== newValue) {
             //If the user has already given another rating (will not run if you click the same rating twice to save the climate)
             GetSpecificMealRating({ variables: { mealId } })
             let oldRatings = specificRating
-            console.log(
-                'The ratings before the mutation are as follows: ' + oldRatings
-            )
+         
             let found = false // This flag will indicate whether the rating was already removed
 
             // Remove only the first occurrence of the localRating
@@ -192,11 +185,8 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                     console.error('Network Error:', error.networkError)
                 })
         }
-        console.log(
-            'Localstorage verdien var før endring: ' + getLocalRating(mealId)
-        )
+     
         setLocalRating(mealId, newValue) // Sets the localStorage rating
-        console.log('Localstorage verdien er: ' + getLocalRating(mealId))
     }
 
     useEffect(() => {
@@ -250,7 +240,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                                 className="w-2/3 h-full object-contain rounded mb-4 "
                             />
                         </div>
-                        <p className="text-lg mb-4">{category}</p>
                         <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-2 text-center">
                             {strMeal}{' '}
                         </h2>
@@ -340,7 +329,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                 </div>
             </Modal>
         </div>,
-        modalRoot
+        modalRoot!
     )
 }
 
