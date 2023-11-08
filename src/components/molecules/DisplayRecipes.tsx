@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import RecipeCard from '../molecules/RecipeCard'
-import ModalRecipe from '../molecules/Modal/ModalRecipe'
+import RecipeCard from './RecipeCard'
+import ModalRecipe from '../atoms/ModalRecipe'
 import { gql, useQuery } from '@apollo/client'
 
 // Query accepts two optional parameters (categories and areas, both are strings)
@@ -67,11 +67,13 @@ interface Meal {
     strMealThumb: string
 }
 
+// Defines props
 interface DisplayRecipesProps {
     selectedCategory: string | null
     selectedAreas: string[]
 }
 
+// All pages should have 12 cards
 const PAGE_SIZE = 12;
 
 const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
@@ -81,6 +83,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     const [selectedRecipe, setSelectedRecipe] = useState<Meal | null>(null)
     const [currentPage, setCurrentPage] = useState(0);
 
+    // Does a database call, fetchMore lets you fetch more at a later time
     const { loading, error, data, fetchMore } = useQuery(GET_MEALS, {
         variables: {
             categories: selectedCategory ? [selectedCategory] : [],
@@ -98,6 +101,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
         setSelectedRecipe(null)
     }
 
+    // Uses fetchMore to do a database call for the cards on the previous page (last 12 in the database)
     const pageBack = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
@@ -109,6 +113,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
         }
     };
 
+    // Uses fetchMore to do a database call for the cards on the next page (next 12 in the database)
     const pageForward = () => {
         if (data && data.meals.length === PAGE_SIZE) {
             setCurrentPage(currentPage + 1);

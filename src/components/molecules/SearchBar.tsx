@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Fuse, { FuseResult } from 'fuse.js'
 import { gql, useQuery, useLazyQuery } from '@apollo/client'
-import ModalRecipe from '../molecules/Modal/ModalRecipe'
+import ModalRecipe from '../atoms/ModalRecipe'
 
 // Define a type to use later, to avoid using "any"
 type Dish = {
@@ -115,7 +115,7 @@ const Search: React.FC = () => {
 
     const [
         GetSpesificMeal,
-        { loading: loadingSearch, data: dataSearch, error: errorSearch },
+        { loading: loadingSearch, error: errorSearch },
     ] = useLazyQuery(GET_SPESIFIC_MEAL, {
         onCompleted: (data) => {
             // Data will be available here after the query completes

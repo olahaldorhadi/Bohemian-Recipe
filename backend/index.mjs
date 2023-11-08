@@ -1,8 +1,8 @@
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import cors from 'cors'
-import { typeDefs, resolvers } from './schema/index.mjs' // Import your typeDefs and resolvers
-import { connectToDB } from './db.mjs' // Import the database connection function
+import { typeDefs, resolvers } from './schema/index.mjs' 
+import { connectToDB } from './db.mjs' 
 
 const app = express()
 app.use(cors())

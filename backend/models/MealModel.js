@@ -1,5 +1,6 @@
 // export default Meal;
 import { Schema as _Schema, model } from 'mongoose'
+
 const Schema = _Schema
 
 // Mongoose schema definition
@@ -10,8 +11,6 @@ const MealSchema = new Schema({
     strArea: { type: String, required: true },
     strInstructions: { type: String, required: true },
     strMealThumb: { type: String, required: true },
-    strTags: String,
-    strYoutube: String,
     strIngredient1: String,
     strIngredient2: String,
     strIngredient3: String,
@@ -52,10 +51,6 @@ const MealSchema = new Schema({
     strMeasure18: String,
     strMeasure19: String,
     strMeasure20: String,
-    strSource: String,
-    strImageSource: String,
-    strCreativeCommonsConfirmed: String,
-    dateModified: Date,
 })
 
 // Create Mongoose model
