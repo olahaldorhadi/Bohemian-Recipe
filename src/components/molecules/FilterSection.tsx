@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
@@ -9,12 +9,12 @@ const sortOptions = [
     { name: 'Category (A-Z)', current: false },
 ]
 const subCategories = [
-    { name: 'Vegetarian'},
-    { name: 'Beef'},
-    { name: 'Seafood'},
-    { name: 'Chicken'},
-    { name: 'Side'},
-    { name: 'Pasta'},
+    { name: 'Vegetarian' },
+    { name: 'Beef' },
+    { name: 'Seafood' },
+    { name: 'Chicken' },
+    { name: 'Side' },
+    { name: 'Pasta' },
     { name: 'Dessert' },
 ]
 const filters = [
@@ -51,7 +51,7 @@ export default function FiltersComp() {
         null
     )
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
-    const [selectedSort, setSelectedSort] = useState<string>("strMeal")
+    const [selectedSort, setSelectedSort] = useState<string>('strMeal')
 
     const handleCategoryChange = (category: string) => {
         setSelectedCategory((prevCategory) =>
@@ -68,7 +68,7 @@ export default function FiltersComp() {
     }
 
     const handleSortChange = (sort: string) => {
-        setSelectedSort(sort === "A-Z" ? "strMeal" : "strCategory");
+        setSelectedSort(sort === 'A-Z' ? 'strMeal' : 'strCategory')
     }
 
     return (
@@ -253,10 +253,10 @@ export default function FiltersComp() {
                                     <Menu.Button className="group inline-flex justify-center text-sm font-medium">
                                         Sort
                                         <ChevronDownIcon
-                                        className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                                        aria-hidden="true"
+                                            className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                                            aria-hidden="true"
                                         />
-                                </Menu.Button>
+                                    </Menu.Button>
                                 </div>
                                 <Transition
                                     as={Fragment}
@@ -278,7 +278,11 @@ export default function FiltersComp() {
                                                                     option.name
                                                                 )
                                                             }
-                                                            className="text-black px-2 pt-1"
+                                                            className={`block w-full px-4 py-2 ${
+                                                                active
+                                                                    ? 'bg-gray-100 text-gray-900'
+                                                                    : 'text-gray-900'
+                                                            } hover:bg-orange-200 focus:outline-none focus:outline-none focus:bg-orange-600 active:bg-orange-400`}
                                                         >
                                                             {option.name}
                                                         </p>
@@ -317,7 +321,7 @@ export default function FiltersComp() {
                                 <h3 className="sr-only">Allergens</h3>
                                 <ul
                                     role="list"
-                                    className="space-y-4 border-b border-gray-200 pb-6 text-sx font-medium text-gray-900 hover:cursor-pointer "
+                                    className="space-y-4 border-b border-gray-200 pb-6 text-sx font-medium text-gray-900 hover:cursor-pointer"
                                 >
                                     {subCategories.map((category) => (
                                         <li key={category.name}>
@@ -327,12 +331,12 @@ export default function FiltersComp() {
                                                         category.name
                                                     )
                                                 }}
-                                                className={
+                                                className={`${
                                                     selectedCategory ===
                                                     category.name
                                                         ? 'text-orange-400'
-                                                        : 'text-white'
-                                                }
+                                                        : 'text-white hover:text-orange-200'
+                                                }`}
                                             >
                                                 {category.name}
                                             </p>

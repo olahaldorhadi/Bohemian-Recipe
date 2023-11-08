@@ -113,16 +113,14 @@ const Search: React.FC = () => {
         }
     }, [])
 
-    const [
-        GetSpesificMeal,
-        { loading: loadingSearch, error: errorSearch },
-    ] = useLazyQuery(GET_SPESIFIC_MEAL, {
-        onCompleted: (data) => {
-            // Data will be available here after the query completes
-            setSelectedRecipe(data.spesificMeal)
-            console.log(data.spesificMeal)
-        },
-    })
+    const [GetSpesificMeal, { loading: loadingSearch, error: errorSearch }] =
+        useLazyQuery(GET_SPESIFIC_MEAL, {
+            onCompleted: (data) => {
+                // Data will be available here after the query completes
+                setSelectedRecipe(data.spesificMeal)
+                console.log(data.spesificMeal)
+            },
+        })
 
     // Function is called when searchfield changes
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

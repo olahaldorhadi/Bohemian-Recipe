@@ -4,7 +4,13 @@ import Meal from '../models/MealModel.js'
 export const typeDefs = gql`
     # Defines different queries
     type Query {
-        meals(categories: [String], areas: [String], offset: Int, limit: Int, sortField: String): [Meal]
+        meals(
+            categories: [String]
+            areas: [String]
+            offset: Int
+            limit: Int
+            sortField: String
+        ): [Meal]
     }
     type Query {
         mealTitles: [String]
@@ -65,12 +71,21 @@ export const typeDefs = gql`
     }
 `
 
-const PAGE_SIZE = 12; // Set the page size to 12
+const PAGE_SIZE = 12 // Set the page size to 12
 
 export const resolvers = {
     Query: {
         // Resolver for the "meals" query field
-        meals: async (_, { categories, areas, offset = 0, limit = PAGE_SIZE, sortField = 'strMeal'  }) => {
+        meals: async (
+            _,
+            {
+                categories,
+                areas,
+                offset = 0,
+                limit = PAGE_SIZE,
+                sortField = 'strMeal',
+            }
+        ) => {
             // Initialize the query object to build a MongoDB query
             let query = {}
 
@@ -87,18 +102,21 @@ export const resolvers = {
             }
 
             // Calculate the actual offset based on the provided page number
-            const calculatedOffset = offset * limit;
+            const calculatedOffset = offset * limit
 
-            const sort = {};
+            const sort = {}
             sort[sortField] = 1
 
             // Execute the query against the MongoDB database
             try {
-                const meals = await Meal.find(query).sort(sort).skip(calculatedOffset).limit(limit);
-                return meals;
+                const meals = await Meal.find(query)
+                    .sort(sort)
+                    .skip(calculatedOffset)
+                    .limit(limit)
+                return meals
             } catch (error) {
-                console.error('Error fetching meals:', error);
-                throw new Error('Error fetching meals');
+                console.error('Error fetching meals:', error)
+                throw new Error('Error fetching meals')
             }
         },
         mealTitles: async () => {
