@@ -7,7 +7,7 @@ import DisplayRecipes from './DisplayRecipes'
 const sortOptions = [
     { name: 'A-Z', current: true },
     { name: 'Category (A-Z)', current: false },
-    { name: 'Origin (A-Z)', current: false},
+    { name: 'Origin (A-Z)', current: false },
 ]
 const subCategories = [
     { name: 'Vegetarian' },
@@ -53,14 +53,14 @@ export default function FiltersComp() {
     )
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
     const [selectedSort, setSelectedSort] = useState<string>('strMeal')
-    const [currentPage, setCurrentPage] = useState(0);
-    const [sortText, setSortText] = useState('A-Z');
+    const [currentPage, setCurrentPage] = useState(0)
+    const [sortText, setSortText] = useState('A-Z')
 
     const handleCategoryChange = (strCategory: string) => {
         setSelectedCategory((prevCategory) =>
             prevCategory === strCategory ? null : strCategory
         )
-        setCurrentPage(0);
+        setCurrentPage(0)
     }
 
     const handleAreaChange = (area: string) => {
@@ -69,21 +69,21 @@ export default function FiltersComp() {
                 ? prevAreas.filter((a) => a !== area)
                 : [...prevAreas, area]
         )
-        setCurrentPage(0);
+        setCurrentPage(0)
     }
 
     const handleSortChange = (sort: string) => {
-        let sortOption: string;
+        let sortOption: string
         if (sort === 'A-Z') {
-            sortOption = 'strMeal';
+            sortOption = 'strMeal'
         } else if (sort === 'Category (A-Z)') {
-            sortOption = 'strCategory';
+            sortOption = 'strCategory'
         } else {
-            sortOption = 'strOrigin';
+            sortOption = 'strOrigin'
         }
         setSortText(sort)
         setSelectedSort(sortOption)
-        setCurrentPage(0);
+        setCurrentPage(0)
     }
 
     return (
@@ -313,6 +313,7 @@ export default function FiltersComp() {
                             <button
                                 type="button"
                                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+                                data-testid="cypress-filter"
                                 onClick={() => setMobileFiltersOpen(true)}
                             >
                                 <span className="sr-only">Filters</span>
@@ -354,6 +355,7 @@ export default function FiltersComp() {
                                                         ? 'text-orange-400'
                                                         : 'text-white hover:text-orange-200'
                                                 }`}
+                                                data-testid={`cypress-category-${strCategory.name}`}
                                             >
                                                 {strCategory.name}
                                             </p>
@@ -439,7 +441,10 @@ export default function FiltersComp() {
                             </form>
 
                             {/* Product grid */}
-                            <div className="lg:col-span-3">
+                            <div
+                                className="lg:col-span-3"
+                                data-testid="cypress-display-recipes"
+                            >
                                 {
                                     <DisplayRecipes
                                         currentPageFilter={currentPage}
