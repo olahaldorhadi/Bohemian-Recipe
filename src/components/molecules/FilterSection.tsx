@@ -147,26 +147,28 @@ export default function FiltersComp() {
                                             role="list"
                                             className="px-2 py-3 font-medium text-por hover:text-orange-600"
                                         >
-                                            {subCategories.map((strCategory) => (
-                                                <li key={strCategory.name}>
-                                                    <p
-                                                        onClick={() =>
-                                                            handleCategoryChange(
-                                                                strCategory.name
-                                                            )
-                                                        }
-                                                        className={classNames(
-                                                            'block px-2 py-2 text-sm cursor-pointer',
-                                                            selectedCategory ===
-                                                            strCategory.name
-                                                                ? 'text-orange-400'
-                                                                : 'text-white'
-                                                        )}
-                                                    >
-                                                        {strCategory.name}
-                                                    </p>
-                                                </li>
-                                            ))}
+                                            {subCategories.map(
+                                                (strCategory) => (
+                                                    <li key={strCategory.name}>
+                                                        <p
+                                                            onClick={() =>
+                                                                handleCategoryChange(
+                                                                    strCategory.name
+                                                                )
+                                                            }
+                                                            className={classNames(
+                                                                'block px-2 py-2 text-sm cursor-pointer',
+                                                                selectedCategory ===
+                                                                    strCategory.name
+                                                                    ? 'text-orange-400'
+                                                                    : 'text-white'
+                                                            )}
+                                                        >
+                                                            {strCategory.name}
+                                                        </p>
+                                                    </li>
+                                                )
+                                            )}
                                         </ul>
 
                                         {filters.map((section) => (

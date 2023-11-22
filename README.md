@@ -31,7 +31,7 @@ http://it2810-39.idi.ntnu.no/project2/
 
 ## Usage Instructions
 
-1. Welcome to Bohemian Recipe. This webpage can help you access recipes retrieved from the MealDB. You can now search, filter and sort different types of recipes.
+1. Welcome to Bohemian Recipe. This webpage can help you access recipes retrieved from TheMealDB. You can now search, filter and sort different types of recipes.
 
 2. Click on one of the cards to display the full recipe.
 

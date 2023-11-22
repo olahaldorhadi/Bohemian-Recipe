@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import RecipeCard from './RecipeCard'
 import ModalRecipe from '../atoms/ModalRecipe'
 import { gql, useQuery } from '@apollo/client'
-import { RecipeCardProps } from '../atoms/ModalRecipe';
+import { RecipeCardProps } from '../atoms/ModalRecipe'
 
 // Query accepts two optional parameters (categories and areas, both are strings)
 // Query should return idMeal, strMeal, strCategory and strArea. Can be expanded to include all necessary information.
@@ -77,7 +77,7 @@ interface Meal {
     strCategory: string
     strArea: string
     strMealThumb: string
-    strInstructions: string;
+    strInstructions: string
     strIngredient1: string
     strIngredient2: string
     strIngredient3: string
@@ -138,7 +138,8 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     selectedAreas,
     sortOption,
 }) => {
-    const [selectedRecipe, setSelectedRecipe] = useState<RecipeCardProps | null>(null)
+    const [selectedRecipe, setSelectedRecipe] =
+        useState<RecipeCardProps | null>(null)
     const [currentPage, setCurrentPage] = useState(0)
 
     useEffect(() => {
@@ -163,52 +164,51 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
             imgAlt: meal.strMeal, // assuming you want to use the meal name as the alt text
             strMeal: meal.strMeal,
             strCategory: meal.strCategory,
-            strArea : meal.strArea,
-            strInstructions : meal.strInstructions,
-            strIngredient1 : meal.strIngredient1,
-            strIngredient2 : meal.strIngredient2,
-            strIngredient3 : meal.strIngredient3,
-            strIngredient4 : meal.strIngredient4,
-            strIngredient5 : meal.strIngredient5,
-            strIngredient6 : meal.strIngredient6,
-            strIngredient7 : meal.strIngredient7,
-            strIngredient8 : meal.strIngredient8,
-            strIngredient9 : meal.strIngredient9,
-            strIngredient10 : meal.strIngredient10,
-            strIngredient11 : meal.strIngredient11,
-            strIngredient12 : meal.strIngredient12,
-            strIngredient13 : meal.strIngredient13,
-            strIngredient14 : meal.strIngredient14,
-            strIngredient15 : meal.strIngredient15,
-            strIngredient16 : meal.strIngredient16,
-            strIngredient17 : meal.strIngredient17,
-            strIngredient18 : meal.strIngredient18,
-            strIngredient19 : meal.strIngredient19,
-            strIngredient20 : meal.strIngredient20,
-            strMeasure1 : meal.strMeasure1,
-            strMeasure2 : meal.strMeasure2,
-            strMeasure3 : meal.strMeasure3,
-            strMeasure4 : meal.strMeasure4,
-            strMeasure5 : meal.strMeasure5,
-            strMeasure6 : meal.strMeasure6,
-            strMeasure7 : meal.strMeasure7,
-            strMeasure8 : meal.strMeasure8,
-            strMeasure9 : meal.strMeasure9,
-            strMeasure10 : meal.strMeasure10,
-            strMeasure11 : meal.strMeasure11,
-            strMeasure12 : meal.strMeasure12,
-            strMeasure13 : meal.strMeasure13,
-            strMeasure14 : meal.strMeasure14,
-            strMeasure15 : meal.strMeasure15,
-            strMeasure16 : meal.strMeasure16,
-            strMeasure17 : meal.strMeasure17,
-            strMeasure18 : meal.strMeasure18,
-            strMeasure20 : meal.strMeasure20,
-            strMeasure19 : meal.strMeasure19,
-            
-        };
-        setSelectedRecipe(recipeProps);
-    };
+            strArea: meal.strArea,
+            strInstructions: meal.strInstructions,
+            strIngredient1: meal.strIngredient1,
+            strIngredient2: meal.strIngredient2,
+            strIngredient3: meal.strIngredient3,
+            strIngredient4: meal.strIngredient4,
+            strIngredient5: meal.strIngredient5,
+            strIngredient6: meal.strIngredient6,
+            strIngredient7: meal.strIngredient7,
+            strIngredient8: meal.strIngredient8,
+            strIngredient9: meal.strIngredient9,
+            strIngredient10: meal.strIngredient10,
+            strIngredient11: meal.strIngredient11,
+            strIngredient12: meal.strIngredient12,
+            strIngredient13: meal.strIngredient13,
+            strIngredient14: meal.strIngredient14,
+            strIngredient15: meal.strIngredient15,
+            strIngredient16: meal.strIngredient16,
+            strIngredient17: meal.strIngredient17,
+            strIngredient18: meal.strIngredient18,
+            strIngredient19: meal.strIngredient19,
+            strIngredient20: meal.strIngredient20,
+            strMeasure1: meal.strMeasure1,
+            strMeasure2: meal.strMeasure2,
+            strMeasure3: meal.strMeasure3,
+            strMeasure4: meal.strMeasure4,
+            strMeasure5: meal.strMeasure5,
+            strMeasure6: meal.strMeasure6,
+            strMeasure7: meal.strMeasure7,
+            strMeasure8: meal.strMeasure8,
+            strMeasure9: meal.strMeasure9,
+            strMeasure10: meal.strMeasure10,
+            strMeasure11: meal.strMeasure11,
+            strMeasure12: meal.strMeasure12,
+            strMeasure13: meal.strMeasure13,
+            strMeasure14: meal.strMeasure14,
+            strMeasure15: meal.strMeasure15,
+            strMeasure16: meal.strMeasure16,
+            strMeasure17: meal.strMeasure17,
+            strMeasure18: meal.strMeasure18,
+            strMeasure20: meal.strMeasure20,
+            strMeasure19: meal.strMeasure19,
+        }
+        setSelectedRecipe(recipeProps)
+    }
 
     const handleCloseModal = () => {
         setSelectedRecipe(null)

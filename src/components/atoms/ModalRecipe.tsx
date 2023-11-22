@@ -94,7 +94,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
         onCompleted: (data) => {
             // Now data.specificMealRating should be directly an array of integers
             setSpecificRating(data.specificMealRating)
-            
         },
     })
     const [updateRating] = useMutation(UPDATE_MEAL_MUTATION)
@@ -147,13 +146,12 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
     } = selectedRecipe
 
     function ratingFunction(newValue: number) {
-       
         const localRating = getLocalRating(mealId)
         if (localRating !== 0 && localRating !== newValue) {
             //If the user has already given another rating (will not run if you click the same rating twice to save the climate)
             GetSpecificMealRating({ variables: { mealId } })
             let oldRatings = specificRating
-         
+
             let found = false // This flag will indicate whether the rating was already removed
 
             // Remove only the first occurrence of the localRating
@@ -185,7 +183,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                     console.error('Network Error:', error.networkError)
                 })
         }
-     
+
         setLocalRating(mealId, newValue) // Sets the localStorage rating
     }
 
