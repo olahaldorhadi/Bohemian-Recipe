@@ -141,12 +141,12 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     const [selectedRecipe, setSelectedRecipe] =
         useState<RecipeCardProps | null>(null)
     const [currentPage, setCurrentPage] = useState(0)
-    const [selectedMealId, setSelectedMealId] = useState("");
+    // const [selectedMealId, setSelectedMealId] = useState("");
 
-    const handleMealIdChange = (newMealId: string) => {
-        console.log("newMealId display: " + newMealId)
-        setSelectedMealId(newMealId);
-    };
+    // const handleMealIdChange = (newMealId: string) => {
+    //     console.log("newMealId display: " + newMealId)
+    //     setSelectedMealId(newMealId);
+    // };
 
     useEffect(() => {
         setCurrentPage(currentPageFilter)
@@ -258,7 +258,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
                     >
                         <RecipeCard
                             key={meal.idMeal}
-                            mealId={selectedMealId || meal.idMeal}
+                            mealId={meal.idMeal}
                             strMealThumb={meal.strMealThumb}
                             imgAlt={meal.strMeal}
                             title={meal.strMeal}
@@ -291,7 +291,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
                     selectedRecipe={selectedRecipe}
                     mealId={selectedRecipe.idMeal}
                     onClose={handleCloseModal}
-                    onMealIdChange={handleMealIdChange}
+                    // onMealIdChange={handleMealIdChange}
                 />
             )}
         </div>
