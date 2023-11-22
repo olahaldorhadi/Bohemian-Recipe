@@ -7,6 +7,7 @@ import DisplayRecipes from './DisplayRecipes'
 const sortOptions = [
     { name: 'A-Z', current: true },
     { name: 'Category (A-Z)', current: false },
+    { name: 'Origin (A-Z)', current: false},
 ]
 const subCategories = [
     { name: 'Vegetarian' },
@@ -52,6 +53,7 @@ export default function FiltersComp() {
     )
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
     const [selectedSort, setSelectedSort] = useState<string>('strMeal')
+    const [sortText, setSortText] = useState('A-Z');
 
     const handleCategoryChange = (strCategory: string) => {
         setSelectedCategory((prevCategory) =>
@@ -68,7 +70,16 @@ export default function FiltersComp() {
     }
 
     const handleSortChange = (sort: string) => {
-        setSelectedSort(sort === 'A-Z' ? 'strMeal' : 'strCategory')
+        let sortOption: string;
+        if (sort === 'A-Z') {
+            sortOption = 'strMeal';
+        } else if (sort === 'Category (A-Z)') {
+            sortOption = 'strCategory';
+        } else {
+            sortOption = 'strOrigin';
+        }
+        setSortText(sort)
+        setSelectedSort(sortOption)
     }
 
     return (
@@ -251,7 +262,7 @@ export default function FiltersComp() {
                             >
                                 <div>
                                     <Menu.Button className="group inline-flex justify-center text-sm font-medium">
-                                        Sort
+                                        {sortText}
                                         <ChevronDownIcon
                                             className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                             aria-hidden="true"
