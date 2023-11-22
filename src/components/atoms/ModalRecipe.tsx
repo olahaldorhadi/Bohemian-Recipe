@@ -146,6 +146,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
     } = selectedRecipe
 
     function ratingFunction(newValue: number) {
+        console.log("New value: " + newValue);
         const localRating = getLocalRating(mealId)
         if (localRating !== 0 && localRating !== newValue) {
             //If the user has already given another rating (will not run if you click the same rating twice to save the climate)
