@@ -256,8 +256,8 @@ export default function FiltersComp() {
                 </Transition.Root>
 
                 <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 bg-black">
-                    <div className="flex items-baseline justify-between border-b border-gray-200 pt-8">
-                        <h1 className="text-2xl font-bold tracking-tight text-white mb-4">
+                    <div className="flex items-baseline justify-between border-b-2 border-gray-200 pt-8">
+                        <h1 className="text-3xl font-bold tracking-tight text-white mb-4">
                             Filter your recipes
                         </h1>
 
@@ -337,10 +337,12 @@ export default function FiltersComp() {
                             {/* Filters */}
                             <form className="hidden lg:block">
                                 <h3 className="sr-only">Allergens</h3>
+                                <h2 className="text-2xl font-bold tracking-tight text-white mb-4 font-bold border-b border-white pb-2">Category</h2>
                                 <ul
                                     role="list"
                                     className="space-y-4 border-b border-gray-200 pb-6 text-sx font-medium text-gray-900 hover:cursor-pointer"
                                 >
+                                    
                                     {subCategories.map((strCategory) => (
                                         <li key={strCategory.name}>
                                             <p
