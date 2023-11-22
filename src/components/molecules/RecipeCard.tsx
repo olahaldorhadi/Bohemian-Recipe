@@ -30,6 +30,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
             className="w-full h-96 rounded-xl border-8 border-black bg-zinc-900 border-color-orange"
             onClick={onClick}
             style={{ cursor: 'pointer' }}
+            data-testid={`cypress-recipe-card-${strCategory}`}
         >
             <img
                 src={strMealThumb}
@@ -40,7 +41,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
             <div className="p-4 text-white">
                 <h2 className="text-xl font-semibold mb-2">{title}</h2>
                 <hr className="my-2" />
-                <p className="mt-auto">{strCategory}</p>
+                <p className="mt-auto" data-testid="cypress-recipe-category">
+                    {strCategory}
+                </p>
                 <p className="mt-auto">
                     ★ {calculateAverage(rating).toFixed(2)} / 5
                 </p>
