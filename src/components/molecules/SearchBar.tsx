@@ -196,6 +196,7 @@ const Search: React.FC = () => {
                 type="text"
                 name="search"
                 id="search"
+                data-testid="cypress-search"
                 value={query} // Sets its value to be query
                 onChange={handleSearch} // Runs handleSearch when changed
                 className="w-full sm:w-full rounded-lg border-2 py-2 text-gray-900 text-sm leading-6 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-white focus:bg-white"

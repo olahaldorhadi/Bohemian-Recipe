@@ -150,7 +150,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
 
     useEffect(() => {
         setCurrentPage(currentPageFilter)
-    }, [currentPageFilter, selectedCategory, selectedAreas, sortOption]);
+    }, [currentPageFilter, selectedCategory, selectedAreas, sortOption])
 
     // Does a database call, fetchMore lets you fetch more at a later time
     const { loading, error, data, fetchMore } = useQuery(GET_MEALS, {
