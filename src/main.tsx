@@ -6,6 +6,9 @@ import './index.css'
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
+
+    // Should be enabled to run on VM
+    // uri: 'http://129.241.104.136:4000/graphql',
     cache: new InMemoryCache(),
 })
 
