@@ -60,6 +60,7 @@ export type ModalRecipeProps = {
     selectedRecipe: RecipeCardProps
     mealId: string
     onClose: () => void
+    onMealIdChange: (newMealId: string) => void
 }
 
 const GET_SPECIFIC_MEAL_RATING = gql`
@@ -81,6 +82,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
     selectedRecipe,
     mealId,
     onClose,
+    onMealIdChange,
 }) => {
     const [rating, setRating] = useState<number>(getLocalRating(mealId)) // Initialized the state from localStorage
     const modalRoot = document.getElementById('modal-root')
@@ -89,10 +91,11 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
 
     const handleRatingChange = (value: number) => {
         setRating(value); // Local state
-        const valueToDelete = getLocalRating(mealId) // TODO CHECK if this is good
+        const valueToDelete = getLocalRating(mealId) 
         setLocalRating(mealId, value); // Update local storage
         ratingFunction(value, valueToDelete);
         console.log("After rating function")
+        updateMealId(mealId)
     }
 
     const [
@@ -105,7 +108,10 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
             setSpecificRating(data.specificMealRating)
         },
     })
-    // const [updateRating] = useMutation(UPDATE_MEAL_MUTATION)
+    const updateMealId = (newId: string) => {
+        console.log("onMealIdChange: " + newId)
+        onMealIdChange(newId);
+    };
     const [updateMealRating] = useMutation(UPDATE_MEAL_MUTATION);
     const handleUpdateRating = (mealId: string, newRating: number[]) => {
         updateMealRating({

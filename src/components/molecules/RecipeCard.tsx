@@ -1,6 +1,8 @@
 import React from 'react'
+import { getLocalRating } from '../../utils/localStorageUtil'
 
 type RecipeCardProps = {
+    mealId: string
     strMealThumb: string
     imgAlt: string
     title: string
@@ -18,6 +20,7 @@ function calculateAverage(ratings: [number]) {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({
+    mealId,
     strMealThumb,
     imgAlt,
     title,
@@ -25,6 +28,8 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
     onClick,
     rating,
 }) => {
+    const currentLocalRating = getLocalRating(mealId);
+    console.log(title + " - " + currentLocalRating)
     return (
         <div
             className="w-full h-96 rounded-xl border-8 border-black bg-zinc-900 border-color-orange"
@@ -42,7 +47,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
                 <hr className="my-2" />
                 <p className="mt-auto">{strCategory}</p>
                 <p className="mt-auto">
-                    ★ {calculateAverage(rating).toFixed(2)} / 5
+                    <span className={`${currentLocalRating !== 0 ? 'text-[#ffc107]' : ''}`}>★</span> {calculateAverage(rating).toFixed(2)} / 5
                 </p>
             </div>
         </div>
