@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import RecipeCard from './RecipeCard'
 import ModalRecipe from '../atoms/ModalRecipe'
 import { gql, useQuery } from '@apollo/client'
@@ -123,6 +123,7 @@ interface Meal {
 
 // Defines props
 interface DisplayRecipesProps {
+    currentPageFilter: number
     selectedCategory: string | null
     selectedAreas: string[]
     sortOption: string
@@ -132,12 +133,17 @@ interface DisplayRecipesProps {
 const PAGE_SIZE = 12
 
 const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
+    currentPageFilter,
     selectedCategory,
     selectedAreas,
     sortOption,
 }) => {
     const [selectedRecipe, setSelectedRecipe] = useState<RecipeCardProps | null>(null)
     const [currentPage, setCurrentPage] = useState(0)
+
+    useEffect(() => {
+        setCurrentPage(currentPageFilter)
+    }, [currentPageFilter, selectedCategory, selectedAreas, sortOption]);
 
     // Does a database call, fetchMore lets you fetch more at a later time
     const { loading, error, data, fetchMore } = useQuery(GET_MEALS, {

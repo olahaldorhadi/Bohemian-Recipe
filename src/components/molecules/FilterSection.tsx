@@ -53,12 +53,14 @@ export default function FiltersComp() {
     )
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
     const [selectedSort, setSelectedSort] = useState<string>('strMeal')
+    const [currentPage, setCurrentPage] = useState(0);
     const [sortText, setSortText] = useState('A-Z');
 
     const handleCategoryChange = (strCategory: string) => {
         setSelectedCategory((prevCategory) =>
             prevCategory === strCategory ? null : strCategory
         )
+        setCurrentPage(0);
     }
 
     const handleAreaChange = (area: string) => {
@@ -67,6 +69,7 @@ export default function FiltersComp() {
                 ? prevAreas.filter((a) => a !== area)
                 : [...prevAreas, area]
         )
+        setCurrentPage(0);
     }
 
     const handleSortChange = (sort: string) => {
@@ -80,6 +83,7 @@ export default function FiltersComp() {
         }
         setSortText(sort)
         setSelectedSort(sortOption)
+        setCurrentPage(0);
     }
 
     return (
@@ -436,6 +440,7 @@ export default function FiltersComp() {
                             <div className="lg:col-span-3">
                                 {
                                     <DisplayRecipes
+                                        currentPageFilter={currentPage}
                                         selectedCategory={selectedCategory}
                                         selectedAreas={selectedAreas}
                                         sortOption={selectedSort}
