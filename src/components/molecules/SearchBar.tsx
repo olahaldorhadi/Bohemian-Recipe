@@ -140,6 +140,7 @@ const Search: React.FC = () => {
                 new Fuse(items, {
                     keys: ['title'],
                     includeScore: true,
+                    threshold: 0.4, // Sets a threshold for how strict the search should be. After testing different thresholds we found 0.4 to be the best option.
                 })
             )
         }
