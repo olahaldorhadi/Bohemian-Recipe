@@ -244,7 +244,6 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
         }
     }
 
-
     if (loading) return <p>Loading meals...</p>
     if (error) return <p>Error loading meals: {error.message}</p>
 
@@ -265,7 +264,6 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
                             strCategory={meal.strCategory}
                             onClick={() => handleRecipeCardClick(meal)}
                             rating={meal.rating}
-                            
                         />
                     </div>
                 ))}

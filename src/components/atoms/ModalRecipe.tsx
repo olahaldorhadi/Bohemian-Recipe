@@ -60,6 +60,7 @@ export type ModalRecipeProps = {
     selectedRecipe: RecipeCardProps
     mealId: string
     onClose: () => void
+    // onMealIdChange: (newMealId: string) => void
 }
 
 const GET_SPECIFIC_MEAL_RATING = gql`
@@ -81,10 +82,21 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
     selectedRecipe,
     mealId,
     onClose,
+    // onMealIdChange,
 }) => {
+    const [rating, setRating] = useState<number>(getLocalRating(mealId)) // Initialized the state from localStorage
     const modalRoot = document.getElementById('modal-root')
 
     const [specificRating, setSpecificRating] = useState<number[]>([])
+
+    const handleRatingChange = (value: number) => {
+        setRating(value) // Local state
+        const valueToDelete = getLocalRating(mealId)
+        setLocalRating(mealId, value) // Update local storage
+        ratingFunction(value, valueToDelete)
+        console.log('After rating function')
+        // updateMealId(mealId)
+    }
 
     const [
         GetSpecificMealRating,
@@ -96,7 +108,19 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
             setSpecificRating(data.specificMealRating)
         },
     })
-    const [updateRating] = useMutation(UPDATE_MEAL_MUTATION)
+    // const updateMealId = (newId: string) => {
+    //     console.log("onMealIdChange: " + newId)
+    //     onMealIdChange(newId);
+    // };
+    const [updateMealRating] = useMutation(UPDATE_MEAL_MUTATION)
+    const handleUpdateRating = (mealId: string, newRating: number[]) => {
+        updateMealRating({
+            variables: {
+                mealId: mealId,
+                rating: newRating,
+            },
+        })
+    }
 
     const {
         strMealThumb,
@@ -145,31 +169,41 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
         strMeasure20,
     } = selectedRecipe
 
-    function ratingFunction(newValue: number) {
-        const localRating = getLocalRating(mealId)
-        if (localRating !== 0 && localRating !== newValue) {
-            //If the user has already given another rating (will not run if you click the same rating twice to save the climate)
-            GetSpecificMealRating({ variables: { mealId } })
-            let oldRatings = specificRating
+    function ratingFunction(newValue: number, valueToDelete: number) {
+        const localRating = rating // consider changing variable name,
 
+        GetSpecificMealRating({ variables: { mealId } }) // This gets specific meal ratings
+        const oldRatings = [...specificRating] // The ratings for a specific meals
+        let ratingsAfterRemoval = [] // Will be used when removing a specific rating
+        if (localRating !== 0) {
             let found = false // This flag will indicate whether the rating was already removed
             // Remove only the first occurrence of the localRating
-            oldRatings = oldRatings.filter((rating) => {
-                if (!found && rating === localRating) {
+            console.log(
+                'About to remove value from the list. The deleted value should be: ' +
+                    valueToDelete +
+                    ' and the list is now' +
+                    oldRatings
+            )
+            ratingsAfterRemoval = oldRatings.filter((r) => {
+                if (!found && r === valueToDelete) {
                     found = true // Set the flag to true after removing the rating
                     return false // Remove this rating
                 }
                 return true // Keep all other ratings
             })
-            console.log("Done removing value from the list. The deleted value should have been: " + valueToDelete + " and the list is now (before adding new value)" + ratingsAfterRemoval)
-        } else {
-            ratingsAfterRemoval = oldRatings
-            console.log("Done removing value from the list. The deleted value should have been: " + valueToDelete + " and the list is now (before adding new value)" + ratingsAfterRemoval)
+            console.log(
+                'Done removing value from the list. The deleted value should have been: ' +
+                    valueToDelete +
+                    ' and the list is now (before adding new value)' +
+                    ratingsAfterRemoval
+            )
         } else {
             ratingsAfterRemoval = oldRatings
         }
-
-        setLocalRating(mealId, newValue) // Sets the localStorage rating
+        // Add the new rating
+        ratingsAfterRemoval.push(newValue)
+        setSpecificRating(ratingsAfterRemoval)
+        handleUpdateRating(mealId, ratingsAfterRemoval)
     }
 
     useEffect(() => {
@@ -298,14 +332,11 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                             </h2>
                             <Rating
                                 count={5}
-                                value={getLocalRating(mealId)}
+                                value={rating}
                                 edit={true}
                                 onChange={handleRatingChange}
-                                onChange={handleRatingChange}
                             />
-                            <span className="text-lg">
-                                {getLocalRating(mealId)}/5 stars
-                            </span>
+                            <span className="text-lg">{rating}/5 stars</span>
                         </div>
                     </div>
                 </div>

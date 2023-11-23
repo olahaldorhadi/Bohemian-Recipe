@@ -40,13 +40,13 @@ http://it2810-39.idi.ntnu.no/project2/
 
 ## Running Tests
 
-Please run the application before testing with ``` npm start ```
+Please run the application before testing with `npm start`
 
-You can run vitest test with ``` npm test ```
+You can run vitest test with `npm test`
 
-To run the E2E testing with Cypress explorer run ``` npx cypress open ```
+To run the E2E testing with Cypress explorer run `npx cypress open`
 
-To run Cypress headlessly run ```npx cypress run ``` in your terminal
+To run Cypress headlessly run `npx cypress run ` in your terminal
 
 # Documentation from the Developers
 
@@ -79,17 +79,18 @@ We used MongoDB, a popular NoSQL database, as we found the most documentation us
 
 ## Testing, Development and Quality control
 
-We have utilized linting and usage of Prettier throughout. We included an extensive README-file (congratulations on reading this far). We have discussed, explained and referred to our most important choices and solutions in regards, but not limited to, components and API. Comments are now improved in the code. Regarding quality control, we have used coauthoring frequently and held code reviews as a team. 
+We have utilized linting and usage of Prettier throughout. We included an extensive README-file (congratulations on reading this far). We have discussed, explained and referred to our most important choices and solutions in regards, but not limited to, components and API. Comments are now improved in the code. Regarding quality control, we have used coauthoring frequently and held code reviews as a team.
 
 ### Testing Using Vitest
 
-In accordance to the project requirements we have set up testing of components using Vitest. In addition we have utilized Cypress for an automatic E2E testing which also tests the API. Regarding organization of Cypress, we decided to divide the testing into different parts to test different functions. Therefore, you will find cypress tests in different files. 
+In accordance to the project requirements we have set up testing of components using Vitest. In addition we have utilized Cypress for an automatic E2E testing which also tests the API. Regarding organization of Cypress, we decided to divide the testing into different parts to test different functions. Therefore, you will find cypress tests in different files.
 
 Run ‘npm test’ in terminal to run tests
 This will trigger testing using vitest using snapshot testing and functional component testing. Using react testing library and some functions from Jest and Chai.
 
 ### E2E Test Coverage
-We included an automated end-2-end testing, which tests use of filters, intitial load, loading recipes in addition to a test of the API. All in accordance to the requirements. 
+
+We included an automated end-2-end testing, which tests use of filters, intitial load, loading recipes in addition to a test of the API. All in accordance to the requirements.
 
 ## The Work of Each Developer
 
