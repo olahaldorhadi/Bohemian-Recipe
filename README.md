@@ -92,6 +92,14 @@ This will trigger testing using vitest using snapshot testing and functional com
 
 We included an automated end-2-end testing, which tests use of filters, intitial load, loading recipes in addition to a test of the API. All in accordance to the requirements.
 
+## The Database
+
+The data in the MongoDB database is based on TheMealDB, and we converted it to a JSON file containing objects, where one object represents one recipe. The JSON file can be found [here](./db/all_meals_cleaned_no_numbers.json).
+
+The files used to populate the database can be found in the [db](./db/) directory. Before adding the data to the database, we added randomly generated ratings for each meal, in order to showcase the full rating functionality.
+
+The db directory no longer serves any function for the project, but we have chosen to keep it in case we need to repopulate the database, or if anyone is curious about our methods.
+
 ## The Work of Each Developer
 
 This has been delivered, as requested, on BlackBoard.
