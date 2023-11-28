@@ -12,7 +12,6 @@ type Dish = {
 interface Meal {
     idMeal: string
     strMeal: string
-    imgAlt: string
     strCategory: string
     strArea: string
     strMealThumb: string
