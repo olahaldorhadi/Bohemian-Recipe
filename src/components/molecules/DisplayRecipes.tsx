@@ -141,12 +141,6 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     const [selectedRecipe, setSelectedRecipe] =
         useState<RecipeCardProps | null>(null)
     const [currentPage, setCurrentPage] = useState(0)
-    // const [selectedMealId, setSelectedMealId] = useState("");
-
-    // const handleMealIdChange = (newMealId: string) => {
-    //     console.log("newMealId display: " + newMealId)
-    //     setSelectedMealId(newMealId);
-    // };
 
     useEffect(() => {
         setCurrentPage(currentPageFilter)
@@ -167,7 +161,6 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
         const recipeProps: RecipeCardProps = {
             idMeal: meal.idMeal,
             strMealThumb: meal.strMealThumb,
-            imgAlt: meal.strMeal, // assuming you want to use the meal name as the alt text
             strMeal: meal.strMeal,
             strCategory: meal.strCategory,
             strArea: meal.strArea,
@@ -220,6 +213,15 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
         setSelectedRecipe(null)
     }
 
+    const handleKeyDown = (
+        event: React.KeyboardEvent<HTMLDivElement>,
+        meal: Meal
+    ) => {
+        if (event.key === 'Enter') {
+            handleRecipeCardClick(meal)
+        }
+    }
+
     // Uses fetchMore to do a database call for the cards on the previous page (last 12 in the database)
     const pageBack = () => {
         if (currentPage > 0) {
@@ -259,11 +261,12 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
                             key={meal.idMeal}
                             mealId={meal.idMeal}
                             strMealThumb={meal.strMealThumb}
-                            imgAlt={meal.strMeal}
                             title={meal.strMeal}
                             strCategory={meal.strCategory}
                             onClick={() => handleRecipeCardClick(meal)}
+                            onKeyDown={(event) => handleKeyDown(event, meal)}
                             rating={meal.rating}
+                            tabIndex={0}
                         />
                     </div>
                 ))}

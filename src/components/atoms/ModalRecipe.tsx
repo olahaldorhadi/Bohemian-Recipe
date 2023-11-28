@@ -9,7 +9,6 @@ import { gql, useMutation, useLazyQuery } from '@apollo/client'
 export type RecipeCardProps = {
     idMeal: string
     strMealThumb: string
-    imgAlt: string
     strMeal: string
     strCategory: string
     strArea: string
@@ -124,7 +123,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
 
     const {
         strMealThumb,
-        imgAlt,
         strMeal,
         strInstructions,
         strIngredient1,
@@ -253,7 +251,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                         <div className="flex justify-center h-64 md:h-80 lg:h-96">
                             <img
                                 src={strMealThumb}
-                                alt={imgAlt}
+                                alt={strMeal}
                                 className="w-2/3 h-full object-contain rounded mb-4 "
                             />
                         </div>
