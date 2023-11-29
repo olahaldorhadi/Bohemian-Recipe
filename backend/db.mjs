@@ -17,5 +17,3 @@ export async function connectToDB() {
         console.log('Error connecting to MongoDB:', error)
     }
 }
-
-connectToDB()

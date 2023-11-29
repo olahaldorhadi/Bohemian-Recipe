@@ -11,7 +11,6 @@ import { UPDATE_MEAL_MUTATION } from '../molecules/Mutation.tsx'
 export type RecipeCardProps = {
     idMeal: string
     strMealThumb: string
-    imgAlt: string
     strMeal: string
     strCategory: string
     strArea: string
@@ -111,7 +110,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
 
     const {
         strMealThumb,
-        imgAlt,
         strMeal,
         strInstructions,
         strIngredient1,
@@ -161,7 +159,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
 
         GetSpecificMealRating({ variables: { mealId } }) // This gets specific meal ratings
         const oldRatings = [...specificRating] // The ratings for a specific meals
-        let ratingsAfterRemoval = [] // Will be used when removing a specific rating
+        let ratingsAfterRemoval: number[] = [] // Will be used when removing a specific rating
         if (localRating !== 0) {
             let found = false // This flag will indicate whether the rating was already removed
             // Remove only the first occurrence of the localRating
@@ -240,7 +238,7 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                         <div className="flex justify-center h-64 md:h-80 lg:h-96">
                             <img
                                 src={strMealThumb}
-                                alt={imgAlt}
+                                alt={strMeal}
                                 className="w-2/3 h-full object-contain rounded mb-4 "
                             />
                         </div>
