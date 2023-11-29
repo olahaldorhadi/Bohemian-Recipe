@@ -49,6 +49,12 @@ http://it2810-39.idi.ntnu.no/project2/
 
 4. To run Cypress headlessly run `npx cypress run ` in your terminal.
 
+## Linting and Prettier
+
+To check Prettier `npx prettier . --check`
+
+To run Linting `npm run lint`
+
 ## Detailed explanation of project requirements
 
 To see a detailed explanation of how we fulfilled every project requirement, click [here](requirements.md). This explanation is in Norwegian.
@@ -66,9 +72,9 @@ The user is presented with a search bar with the possibility to search for whate
 -   Fetching smaller datasets based on user's search input. We concluded this would require more data being fetched in total, as we would need to fetch the data often.
 -   Display search results as "cards" instead of as a list under the search field. This would have required significantly larger amounts of data, since we would have to load the pictures, which is the absolute biggest part of the dataset. This would not have been a sustainable solution.
 
-You can also use the filter and sorting options. This will affect the whole dataset. Once you have made your selection you are presented with different types of recipes you can interact with. The webpage will only display 12 recipes at the time, and you have the possibility to browse through pages. We use pagination for this, so the client doesn't load the entire dataset unnecessarily. This is a sustainable choice for loading many objects.
+You can also use the filter and sorting options. This will affect the whole dataset. Once you have made your selection you are presented with different types of recipes you can interact with. This will be saved in session storage, so your choices will remain the same if the page is refreshed. The webpage will only display 12 recipes at the time, and you have the possibility to browse through pages. We use pagination for this, so the client doesn't load the entire dataset unnecessarily. This is a sustainable choice for loading many objects.
 
-The user can click on a recipe card to display more information and even give a rating. This rating will affect the overall score of each recipe when utilized. The rating is displayed on the cards before they are clicked. We had issues with a bug where this rating is not updated before the site is refreshed. We tried to solve this in several ways, but could not find a solution. We concluded that the issue stemmed from the "RecipeCard" component not being updated, since updating the state of the rating was not included in this component. This leads to it not automatically being refreshed when the state is updated. Here are some ways we tried to fix the bug:
+The user can click on a recipe card to display more information and even give a rating. This rating will affect the overall score of each recipe when utilized. This is saved in local storage so the user cannot give multiple ratings to affect the overall score. The rating is displayed on the cards before they are clicked. We had issues with a bug where this rating is not updated before the site is refreshed. We tried to solve this in several ways, but could not find a solution. We concluded that the issue stemmed from the "RecipeCard" component not being updated, since updating the state of the rating was not included in this component. This leads to it not automatically being refreshed when the state is updated. Here are some ways we tried to fix the bug:
 
 -   Both "RecipeCard" and "ModalRecipe" (ModalRecipe is where the rating is updated) are components of the parent component "DisplayRecipes". Therefore we tried to pass the state from "ModalRecipe" to "DisplayRecipes" and then to "RecipeCard". We managed to pass the state to "DisplayRecipes", but passing it to "RecipeCard" did not solve the issue.
 -   We tried to use global state management. We strongly believe this is the best way to solve our issue, but could not get it to work. If we had more time to explore solutions we would have explored this route more.

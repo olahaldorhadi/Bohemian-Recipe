@@ -166,7 +166,7 @@ exports[`renders the app without errors 1`] = `
                       Allergens
                     </h3>
                     <h2
-                      class="text-2xl font-bold tracking-tight text-white mb-4 font-bold border-b border-white pb-2"
+                      class="text-2xl font-bold tracking-tight text-white mb-4 border-b border-white pb-2"
                     >
                       Category
                     </h2>
