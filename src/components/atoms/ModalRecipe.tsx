@@ -4,7 +4,9 @@ import { Modal } from './Modal'
 import Rating from '../molecules/Rating'
 import IngredientBox from '../molecules/IngredientBox'
 import { setLocalRating, getLocalRating } from '../../utils/localStorageUtil.ts'
-import { gql, useMutation, useLazyQuery } from '@apollo/client'
+import { useMutation, useLazyQuery } from '@apollo/client'
+import { GET_SPECIFIC_MEAL_RATING } from '../molecules/Queries.tsx'
+import { UPDATE_MEAL_MUTATION } from '../molecules/Mutation.tsx'
 
 export type RecipeCardProps = {
     idMeal: string
@@ -62,21 +64,6 @@ export type ModalRecipeProps = {
     onClose: () => void
     // onMealIdChange: (newMealId: string) => void
 }
-
-const GET_SPECIFIC_MEAL_RATING = gql`
-    query GetSpecificMealRating($mealId: String!) {
-        specificMealRating(mealId: $mealId)
-    }
-`
-
-const UPDATE_MEAL_MUTATION = gql`
-    mutation UpdateSpecificMealRating($mealId: String!, $rating: [Int]) {
-        updateSpecificMealRating(mealId: $mealId, rating: $rating) {
-            idMeal
-            rating
-        }
-    }
-`
 
 const ModalRecipe: React.FC<ModalRecipeProps> = ({
     selectedRecipe,
