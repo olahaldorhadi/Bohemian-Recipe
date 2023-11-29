@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Fuse, { FuseResult } from 'fuse.js'
-import { gql, useQuery, useLazyQuery } from '@apollo/client'
+import { useQuery, useLazyQuery } from '@apollo/client'
 import ModalRecipe from '../atoms/ModalRecipe'
-import {GET_MEAL_TITLES, GET_SPECIFIC_MEAL} from '../molecules/Queries'
+import { GET_MEAL_TITLES, GET_SPECIFIC_MEAL } from '../molecules/Queries'
 
 // Define a type to use later, to avoid using "any"
 type Dish = {

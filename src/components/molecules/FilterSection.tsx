@@ -1,9 +1,15 @@
-import { Fragment, useState } from 'react'
+// Component from Tailwind UI: https://tailwindui.com/components/ecommerce/components/category-filters
+import React, { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import DisplayRecipes from './DisplayRecipes'
-
+import {
+    loadStringFromSessionStorage,
+    saveStringToSessionStorage,
+    loadStringArrayFromSessionStorage,
+    saveStringArrayToSessionStorage,
+} from '../../utils/sessionStorageUtil'
 const sortOptions = [
     { name: 'A-Z', current: true },
     { name: 'Category (A-Z)', current: false },
@@ -48,26 +54,79 @@ function classNames(...classes: string[]) {
 export default function FiltersComp() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(
-        null
+    const [selectedCategory, setSelectedCategory] = useState(() =>
+        loadStringFromSessionStorage('selectedCategory', '')
     )
-    const [selectedAreas, setSelectedAreas] = useState<string[]>([])
-    const [selectedSort, setSelectedSort] = useState<string>('strMeal')
+    const [selectedAreas, setSelectedAreas] = useState(() =>
+        loadStringArrayFromSessionStorage('selectedAreas', [])
+    )
+
+    const [selectedSort, setSelectedSort] = useState(() =>
+        loadStringFromSessionStorage('selectedSort', 'strMeal')
+    )
+    const [sortText, setSortText] = useState(() => {
+        switch (loadStringFromSessionStorage('selectedSort', 'strMeal')) {
+            case 'strMeal':
+                return 'A-Z'
+            case 'strCategory':
+                return 'Category (A-Z)'
+            case 'strOrigin':
+                return 'Origin (A-Z)'
+            default:
+                return 'A-Z'
+        }
+    })
     const [currentPage, setCurrentPage] = useState(0)
-    const [sortText, setSortText] = useState('A-Z')
+
+    const initialAreaStates = loadStringArrayFromSessionStorage(
+        'selectedAreas',
+        []
+    )
+
+    const [areaCheckedState, setAreaCheckedState] = useState(
+        // This is used to make sure the correct checkboxes are checked
+        filters.map((filter) =>
+            filter.options.map((option) =>
+                initialAreaStates.includes(option.value)
+            )
+        )
+    )
+    const handleCheckboxChange = (filterId: string, optionValue: string) => {
+        setAreaCheckedState((currentState) =>
+            currentState.map((filter, filterIdx) => {
+                if (filters[filterIdx].id === filterId) {
+                    return filter.map((checked, optionIdx) => {
+                        const option = filters[filterIdx].options[optionIdx]
+                        if (option) {
+                            return option.value === optionValue
+                                ? !checked
+                                : checked
+                        }
+                        return checked
+                    })
+                }
+                return filter
+            })
+        )
+
+        // Update selectedAreas when clicking a checkbox
+        setSelectedAreas((prev) => {
+            const isAlreadySelected = prev.includes(optionValue)
+            return isAlreadySelected
+                ? prev.filter((value) => value !== optionValue)
+                : [...prev, optionValue]
+        })
+    }
+
+    useEffect(() => {
+        saveStringToSessionStorage('selectedCategory', selectedCategory)
+        saveStringArrayToSessionStorage('selectedAreas', selectedAreas)
+        saveStringToSessionStorage('selectedSort', selectedSort)
+    }, [selectedCategory, selectedAreas, selectedSort])
 
     const handleCategoryChange = (strCategory: string) => {
         setSelectedCategory((prevCategory) =>
-            prevCategory === strCategory ? null : strCategory
-        )
-        setCurrentPage(0)
-    }
-
-    const handleAreaChange = (area: string) => {
-        setSelectedAreas((prevAreas) =>
-            prevAreas.includes(area)
-                ? prevAreas.filter((a) => a !== area)
-                : [...prevAreas, area]
+            prevCategory === strCategory ? '' : strCategory
         )
         setCurrentPage(0)
     }
@@ -171,7 +230,7 @@ export default function FiltersComp() {
                                             )}
                                         </ul>
 
-                                        {filters.map((section) => (
+                                        {filters.map((section, sectionIdx) => (
                                             <Disclosure
                                                 as="div"
                                                 key={section.id}
@@ -215,17 +274,22 @@ export default function FiltersComp() {
                                                                             className="flex items-center"
                                                                         >
                                                                             <input
-                                                                                id={`filter-mobile-${section.id}-${optionIdx}`}
+                                                                                id={`filter-${section.id}-${optionIdx}`}
                                                                                 name={`${section.id}[]`}
-                                                                                defaultValue={
+                                                                                value={
                                                                                     option.value
                                                                                 }
                                                                                 type="checkbox"
-                                                                                defaultChecked={
-                                                                                    option.checked
+                                                                                checked={
+                                                                                    areaCheckedState[
+                                                                                        sectionIdx
+                                                                                    ][
+                                                                                        optionIdx
+                                                                                    ]
                                                                                 }
                                                                                 onChange={() =>
-                                                                                    handleAreaChange(
+                                                                                    handleCheckboxChange(
+                                                                                        section.id,
                                                                                         option.value
                                                                                     )
                                                                                 }
@@ -366,7 +430,7 @@ export default function FiltersComp() {
                                     ))}
                                 </ul>
 
-                                {filters.map((section) => (
+                                {filters.map((section, sectionIdx) => (
                                     <Disclosure
                                         as="div"
                                         key={section.id}
@@ -410,19 +474,24 @@ export default function FiltersComp() {
                                                                     <input
                                                                         id={`filter-${section.id}-${optionIdx}`}
                                                                         name={`${section.id}[]`}
-                                                                        defaultValue={
+                                                                        value={
                                                                             option.value
                                                                         }
                                                                         type="checkbox"
-                                                                        defaultChecked={
-                                                                            option.checked
+                                                                        checked={
+                                                                            areaCheckedState[
+                                                                                sectionIdx
+                                                                            ][
+                                                                                optionIdx
+                                                                            ]
                                                                         }
                                                                         onChange={() =>
-                                                                            handleAreaChange(
+                                                                            handleCheckboxChange(
+                                                                                section.id,
                                                                                 option.value
                                                                             )
                                                                         }
-                                                                        className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-600"
+                                                                        className="h-4 w-4 rounded border-gray-300 text-orange-400 focus:ring-orange-300"
                                                                     />
                                                                     <label
                                                                         htmlFor={`filter-${section.id}-${optionIdx}`}
