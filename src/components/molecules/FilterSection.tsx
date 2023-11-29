@@ -299,7 +299,7 @@ export default function FiltersComp() {
                                                                 active
                                                                     ? 'bg-gray-100 text-gray-900'
                                                                     : 'text-gray-900'
-                                                            } hover:bg-orange-200 focus:outline-none focus:outline-none focus:bg-orange-600 active:bg-orange-400`}
+                                                            } hover:bg-orange-200 focus:outline-none focus:bg-orange-600 active:bg-orange-400`}
                                                         >
                                                             {option.name}
                                                         </p>
@@ -337,7 +337,7 @@ export default function FiltersComp() {
                             {/* Filters */}
                             <form className="hidden lg:block">
                                 <h3 className="sr-only">Allergens</h3>
-                                <h2 className="text-2xl font-bold tracking-tight text-white mb-4 font-bold border-b border-white pb-2">
+                                <h2 className="text-2xl font-bold tracking-tight text-white mb-4 border-b border-white pb-2">
                                     Category
                                 </h2>
                                 <ul
