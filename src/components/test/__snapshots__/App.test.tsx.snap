@@ -1,61 +1,414 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`App component snapshot 1`] = `
-<DocumentFragment>
-  <div
-    class="flex flex-col h-screen justify-between"
-  >
-    <div>
-      <div
-        class="w-full bg-black flex items-center justify-center py-2 md:py-2"
-      >
+exports[`renders the app without errors 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col h-screen justify-between"
+    >
+      <div>
         <div
-          class="h-16 md:h-28"
+          class="w-full bg-black flex items-center justify-center py-2 md:py-2"
+          data-testid="test-header"
         >
-          <a
-            class="header-logo-link"
-            href=""
+          <div
+            class="h-16 md:h-28"
           >
-            <img
-              alt="Logo"
-              class="h-full"
-              src="/src/assets/BR-logo-tr.png"
-            />
-          </a>
+            <a
+              class="header-logo-link"
+              href=""
+            >
+              <img
+                alt="Logo"
+                class="h-full"
+                data-testid="cypress-logo"
+                src="/project2/src/assets/BR-logo-tr.png"
+              />
+            </a>
+          </div>
         </div>
-      </div>
-      <div
-        class="relative w-full h-60 md:h-92 lg:h-108"
-      >
-        <img
-          alt="Lovely-dinner"
-          class="w-full h-full object-cover"
-          src="/src/assets/food.jpg"
-          style="z-index: -1;"
-        />
         <div
-          class="absolute inset-0 bg-orange-500 opacity-30"
-        />
-        <div
-          class="absolute left-1/2 transform -translate-x-1/2 top-16 w-full max-w-xs sm:max-w-md "
+          class="relative w-full h-60 md:h-92 lg:h-108"
         >
-          <h1
-            class="text-2xl sm:text-3xl font-semibold mb-4 text-white  flex flex-col items-center"
+          <img
+            alt="Lovely-dinner"
+            class="w-full h-full object-cover"
+            data-testid="cypress-cover-image"
+            src="/project2/src/assets/food.jpg"
+            style="z-index: -1;"
+          />
+          <div
+            class="absolute inset-0 bg-orange-500 opacity-30"
+          />
+          <div
+            class="absolute left-1/2 transform -translate-x-1/2 top-16 w-full max-w-xs sm:max-w-md "
           >
-            What would you like to make?
-          </h1>
+            <h1
+              class="text-2xl sm:text-3xl font-semibold mb-4 text-white  flex flex-col items-center"
+              data-testid="cypress-title"
+            >
+              What would you like to make?
+            </h1>
+            <div
+              class="mt-2 items-center"
+            >
+              <input
+                class="w-full sm:w-full rounded-lg border-2 py-2 text-gray-900 text-sm leading-6 focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-white focus:bg-white"
+                data-testid="cypress-search"
+                id="search"
+                name="search"
+                placeholder="Search..."
+                type="text"
+                value=""
+              />
+              <ul
+                class="mt-1"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <footer
-        class="bottom-0 left-0 w-full bg-black h-10 flex items-center justify-center"
-      >
-        <p
-          class="text-orange-300 text-xs"
+        <div
+          class="bg-black"
+          data-testid="test-filter"
         >
-          2023 Bohemian Recipe
-        </p>
-      </footer>
+          <div>
+            <main
+              class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 bg-black"
+            >
+              <div
+                class="flex items-baseline justify-between border-b-2 border-gray-200 pt-8"
+              >
+                <h1
+                  class="text-3xl font-bold tracking-tight text-white mb-4"
+                >
+                  Filter your recipes
+                </h1>
+                <div
+                  class="flex items-center"
+                >
+                  <div
+                    class="relative inline-block text-left"
+                    data-headlessui-state=""
+                  >
+                    <div>
+                      <button
+                        aria-expanded="false"
+                        aria-haspopup="menu"
+                        class="group inline-flex justify-center text-sm font-medium"
+                        data-headlessui-state=""
+                        id="headlessui-menu-button-:r0:"
+                        type="button"
+                      >
+                        A-Z
+                        <svg
+                          aria-hidden="true"
+                          class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+                    data-testid="cypress-filter"
+                    type="button"
+                  >
+                    <span
+                      class="sr-only"
+                    >
+                      Filters
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="h-5 w-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <section
+                aria-labelledby="products-heading"
+                class=" pt-6"
+              >
+                <h2
+                  class="sr-only"
+                  id="products-heading"
+                >
+                  Products
+                </h2>
+                <div
+                  class="grid grid-cols-1 gap-x-2 gap-y-10 lg:grid-cols-4"
+                >
+                  <form
+                    class="hidden lg:block"
+                  >
+                    <h3
+                      class="sr-only"
+                    >
+                      Allergens
+                    </h3>
+                    <h2
+                      class="text-2xl font-bold tracking-tight text-white mb-4 font-bold border-b border-white pb-2"
+                    >
+                      Category
+                    </h2>
+                    <ul
+                      class="space-y-4 border-b border-gray-200 pb-6 text-sx font-medium text-gray-900 hover:cursor-pointer"
+                      role="list"
+                    >
+                      <li>
+                        <p
+                          class="text-white hover:text-orange-200"
+                          data-testid="cypress-category-Vegetarian"
+                        >
+                          Vegetarian
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="text-white hover:text-orange-200"
+                          data-testid="cypress-category-Beef"
+                        >
+                          Beef
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="text-white hover:text-orange-200"
+                          data-testid="cypress-category-Seafood"
+                        >
+                          Seafood
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="text-white hover:text-orange-200"
+                          data-testid="cypress-category-Chicken"
+                        >
+                          Chicken
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="text-white hover:text-orange-200"
+                          data-testid="cypress-category-Side"
+                        >
+                          Side
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="text-white hover:text-orange-200"
+                          data-testid="cypress-category-Pasta"
+                        >
+                          Pasta
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="text-white hover:text-orange-200"
+                          data-testid="cypress-category-Dessert"
+                        >
+                          Dessert
+                        </p>
+                      </li>
+                    </ul>
+                    <div
+                      class="border-b border-gray-200 py-6"
+                      data-headlessui-state=""
+                    >
+                      <h3
+                        class="-my-3 flow-root"
+                      >
+                        <button
+                          aria-expanded="false"
+                          class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
+                          data-headlessui-state=""
+                          id="headlessui-disclosure-button-:r1:"
+                          type="button"
+                        >
+                          <span
+                            class="font-medium text-gray-900"
+                          >
+                            Origin
+                          </span>
+                          <span
+                            class="ml-6 flex items-center"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="h-5 w-5"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                      </h3>
+                    </div>
+                  </form>
+                  <div
+                    class="lg:col-span-3"
+                    data-testid="cypress-display-recipes"
+                  >
+                    <div
+                      class="recipe-cards flex flex-wrap justify-around p-4 rounded-full"
+                    >
+                      <div
+                        class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4 "
+                      >
+                        <div
+                          class="w-full h-96 p-0 text-left rounded-xl border-8 border-black bg-zinc-900 border-color-orange transition-none"
+                          data-testid="cypress-recipe-card-Vegetarian"
+                          style="cursor: pointer;"
+                          tabindex="0"
+                          title="Kafteji"
+                        >
+                          <img
+                            class="rounded-t-md w-full h-1/2 object-cover"
+                            src="https://www.themealdb.com/images/media/meals/1bsv1q1560459826.jpg"
+                          />
+                          <div
+                            class="p-4 text-white"
+                          >
+                            <h2
+                              class="text-xl font-semibold mb-2"
+                            >
+                              Kafteji
+                            </h2>
+                            <hr
+                              class="my-2"
+                            />
+                            <p
+                              class="mt-auto"
+                              data-testid="cypress-recipe-category"
+                            >
+                              Vegetarian
+                            </p>
+                            <p
+                              class="mt-auto"
+                            >
+                              <span
+                                class=""
+                              >
+                                ★
+                              </span>
+                               
+                              4.00
+                               / 5
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4 "
+                      >
+                        <div
+                          class="w-full h-96 p-0 text-left rounded-xl border-8 border-black bg-zinc-900 border-color-orange transition-none"
+                          data-testid="cypress-recipe-card-Vegetarian"
+                          style="cursor: pointer;"
+                          tabindex="0"
+                          title="Leblebi Soup"
+                        >
+                          <img
+                            class="rounded-t-md w-full h-1/2 object-cover"
+                            src="https://www.themealdb.com/images/media/meals/x2fw9e1560460636.jpg"
+                          />
+                          <div
+                            class="p-4 text-white"
+                          >
+                            <h2
+                              class="text-xl font-semibold mb-2"
+                            >
+                              Leblebi Soup
+                            </h2>
+                            <hr
+                              class="my-2"
+                            />
+                            <p
+                              class="mt-auto"
+                              data-testid="cypress-recipe-category"
+                            >
+                              Vegetarian
+                            </p>
+                            <p
+                              class="mt-auto"
+                            >
+                              <span
+                                class=""
+                              >
+                                ★
+                              </span>
+                               
+                              2.00
+                               / 5
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="w-full flex justify-center items-center color-orange-600"
+                      >
+                        <button
+                          class="bg-orange-400"
+                          disabled=""
+                        >
+                          ⬅
+                        </button>
+                        <output
+                          class="mx-6"
+                        >
+                          1
+                        </output>
+                        <button
+                          class="bg-orange-400"
+                          disabled=""
+                        >
+                          ➡
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </main>
+          </div>
+        </div>
+        <footer
+          class="bottom-0 left-0 w-full bg-black h-10 flex items-center justify-center"
+          data-testid="cypress-footer"
+        >
+          <p
+            class="text-orange-300 text-xs"
+          >
+            2023
+             Bohemian Recipe
+          </p>
+        </footer>
+      </div>
     </div>
   </div>
-</DocumentFragment>
+</body>
 `;

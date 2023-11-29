@@ -4,12 +4,11 @@ import { getLocalRating } from '../../utils/localStorageUtil'
 type RecipeCardProps = {
     mealId: string
     strMealThumb: string
+    imgAlt: string
     title: string
     strCategory: string
-    onClick?: () => void
-    onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void
+    onClick?: () => void // Add onClick prop to the props type
     rating: [number]
-    tabIndex: number
 }
 
 function calculateAverage(ratings: [number]) {
@@ -23,27 +22,24 @@ function calculateAverage(ratings: [number]) {
 const RecipeCard: React.FC<RecipeCardProps> = ({
     mealId,
     strMealThumb,
+    imgAlt,
     title,
     strCategory,
     onClick,
-    onKeyDown,
     rating,
-    tabIndex,
 }) => {
     const currentLocalRating = getLocalRating(mealId)
     console.log(title + ' - ' + currentLocalRating)
     return (
         <div
-            className="w-full h-96 p-0 text-left rounded-xl border-8 border-black bg-zinc-900 border-color-orange transition-none"
+            className="w-full h-96 rounded-xl border-8 border-black bg-zinc-900 border-color-orange"
             onClick={onClick}
-            onKeyDown={onKeyDown}
-            tabIndex={tabIndex}
             style={{ cursor: 'pointer' }}
             data-testid={`cypress-recipe-card-${strCategory}`}
-            title={title}
         >
             <img
                 src={strMealThumb}
+                alt={imgAlt}
                 className="rounded-t-md w-full h-1/2 object-cover"
             />
 

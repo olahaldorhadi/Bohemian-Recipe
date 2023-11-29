@@ -87,7 +87,7 @@ export default function FiltersComp() {
     }
 
     return (
-        <div className="bg-black">
+        <div className="bg-black" data-testid="test-filter">
             <div>
                 {/* Mobile filter dialog */}
                 <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -258,7 +258,7 @@ export default function FiltersComp() {
                 <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 bg-black">
                     <div className="flex items-baseline justify-between border-b-2 border-gray-200 pt-8">
                         <h1 className="text-3xl font-bold tracking-tight text-white mb-4">
-                            Filter your recipes         
+                            Filter your recipes
                         </h1>
 
                         <div className="flex items-center">
