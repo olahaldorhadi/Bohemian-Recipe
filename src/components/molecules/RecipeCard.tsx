@@ -31,7 +31,6 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
     tabIndex,
 }) => {
     const currentLocalRating = getLocalRating(mealId)
-    console.log(title + ' - ' + currentLocalRating)
     return (
         <div
             className="w-full h-96 p-0 text-left rounded-xl border-8 border-black bg-zinc-900 border-color-orange transition-none"
