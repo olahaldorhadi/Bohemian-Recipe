@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client'
 import { RecipeCardProps } from '../atoms/ModalRecipe'
 import { GET_MEALS } from './Queries';
 
+
 // Defines what a meal is
 interface Meal {
     idMeal: string
