@@ -10,5 +10,6 @@ describe('Footer', () => {
         const expectedText = `${currentYear} Bohemian Recipe`
 
         expect(screen.getByText(expectedText))
+        expect(document.body).toMatchSnapshot()
     })
 })

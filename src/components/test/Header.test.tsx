@@ -17,5 +17,7 @@ describe('Header', () => {
         render(<Header />)
         const logoImage = screen.getByAltText(/Logo/i)
         expect(logoImage).toBeInTheDocument()
+
+        expect(document.body).toMatchSnapshot()
     })
 })

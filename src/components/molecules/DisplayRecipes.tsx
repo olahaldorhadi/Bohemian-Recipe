@@ -1,74 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import RecipeCard from './RecipeCard'
 import ModalRecipe from '../atoms/ModalRecipe'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { RecipeCardProps } from '../atoms/ModalRecipe'
-
-// Query accepts two optional parameters (categories and areas, both are strings)
-// Query should return idMeal, strMeal, strCategory and strArea. Can be expanded to include all necessary information.
-const GET_MEALS = gql`
-    query GetMeals(
-        $categories: [String]
-        $areas: [String]
-        $offset: Int!
-        $sortField: String
-    ) {
-        meals(
-            categories: $categories
-            areas: $areas
-            offset: $offset
-            sortField: $sortField
-        ) {
-            idMeal
-            strMeal
-            strCategory
-            strArea
-            strInstructions
-            strMealThumb
-            strIngredient1
-            strIngredient2
-            strIngredient3
-            strIngredient4
-            strIngredient5
-            strIngredient6
-            strIngredient7
-            strIngredient8
-            strIngredient9
-            strIngredient10
-            strIngredient11
-            strIngredient12
-            strIngredient13
-            strIngredient14
-            strIngredient15
-            strIngredient16
-            strIngredient17
-            strIngredient18
-            strIngredient19
-            strIngredient20
-            strMeasure1
-            strMeasure2
-            strMeasure3
-            strMeasure4
-            strMeasure5
-            strMeasure6
-            strMeasure7
-            strMeasure8
-            strMeasure9
-            strMeasure10
-            strMeasure11
-            strMeasure12
-            strMeasure13
-            strMeasure14
-            strMeasure15
-            strMeasure16
-            strMeasure17
-            strMeasure18
-            strMeasure19
-            strMeasure20
-            rating
-        }
-    }
-`
+import { GET_MEALS } from './Queries';
 
 // Defines what a meal is
 interface Meal {
@@ -141,6 +76,12 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
     const [selectedRecipe, setSelectedRecipe] =
         useState<RecipeCardProps | null>(null)
     const [currentPage, setCurrentPage] = useState(0)
+    // const [selectedMealId, setSelectedMealId] = useState("");
+
+    // const handleMealIdChange = (newMealId: string) => {
+    //     console.log("newMealId display: " + newMealId)
+    //     setSelectedMealId(newMealId);
+    // };
 
     useEffect(() => {
         setCurrentPage(currentPageFilter)
@@ -161,6 +102,7 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
         const recipeProps: RecipeCardProps = {
             idMeal: meal.idMeal,
             strMealThumb: meal.strMealThumb,
+            imgAlt: meal.strMeal, // assuming you want to use the meal name as the alt text
             strMeal: meal.strMeal,
             strCategory: meal.strCategory,
             strArea: meal.strArea,
@@ -213,15 +155,6 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
         setSelectedRecipe(null)
     }
 
-    const handleKeyDown = (
-        event: React.KeyboardEvent<HTMLDivElement>,
-        meal: Meal
-    ) => {
-        if (event.key === 'Enter') {
-            handleRecipeCardClick(meal)
-        }
-    }
-
     // Uses fetchMore to do a database call for the cards on the previous page (last 12 in the database)
     const pageBack = () => {
         if (currentPage > 0) {
@@ -261,12 +194,11 @@ const DisplayRecipes: React.FC<DisplayRecipesProps> = ({
                             key={meal.idMeal}
                             mealId={meal.idMeal}
                             strMealThumb={meal.strMealThumb}
+                            imgAlt={meal.strMeal}
                             title={meal.strMeal}
                             strCategory={meal.strCategory}
                             onClick={() => handleRecipeCardClick(meal)}
-                            onKeyDown={(event) => handleKeyDown(event, meal)}
                             rating={meal.rating}
-                            tabIndex={0}
                         />
                     </div>
                 ))}
