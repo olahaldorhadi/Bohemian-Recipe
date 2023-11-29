@@ -8,11 +8,11 @@ type RecipeCardProps = {
     strCategory: string
     onClick?: () => void
     onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void
-    rating: [number]
+    rating: number[]
     tabIndex: number
 }
 
-function calculateAverage(ratings: [number]) {
+function calculateAverage(ratings: number[]) {
     let sum = 0
     for (let i = 0; i < ratings.length; i++) {
         sum += ratings[i]
