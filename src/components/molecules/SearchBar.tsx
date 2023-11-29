@@ -102,7 +102,6 @@ const Search: React.FC = () => {
             onCompleted: (data) => {
                 // Data will be available here after the query completes
                 setSelectedRecipe(data.specificMeal)
-                console.log(data.specificMeal)
             },
         })
 
@@ -164,8 +163,6 @@ const Search: React.FC = () => {
                     selectedRecipe={selectedRecipe}
                     onClose={handleCloseModal}
                     mealId={selectedRecipe.idMeal}
-
-                    // strMealThumb={selectedRecipe.strMealThumb}
                 />
             )}
         </div>

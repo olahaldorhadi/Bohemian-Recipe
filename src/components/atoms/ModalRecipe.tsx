@@ -80,7 +80,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
         const valueToDelete = getLocalRating(mealId)
         setLocalRating(mealId, value) // Update local storage
         ratingFunction(value, valueToDelete)
-        console.log('After rating function')
         // updateMealId(mealId)
     }
 
@@ -94,10 +93,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
             setSpecificRating(data.specificMealRating)
         },
     })
-    // const updateMealId = (newId: string) => {
-    //     console.log("onMealIdChange: " + newId)
-    //     onMealIdChange(newId);
-    // };
     const [updateMealRating] = useMutation(UPDATE_MEAL_MUTATION)
     const handleUpdateRating = (mealId: string, newRating: number[]) => {
         updateMealRating({
@@ -162,13 +157,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
         let ratingsAfterRemoval: number[] = [] // Will be used when removing a specific rating
         if (localRating !== 0) {
             let found = false // This flag will indicate whether the rating was already removed
-            // Remove only the first occurrence of the localRating
-            console.log(
-                'About to remove value from the list. The deleted value should be: ' +
-                    valueToDelete +
-                    ' and the list is now' +
-                    oldRatings
-            )
             ratingsAfterRemoval = oldRatings.filter((r) => {
                 if (!found && r === valueToDelete) {
                     found = true // Set the flag to true after removing the rating
@@ -176,12 +164,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
                 }
                 return true // Keep all other ratings
             })
-            console.log(
-                'Done removing value from the list. The deleted value should have been: ' +
-                    valueToDelete +
-                    ' and the list is now (before adding new value)' +
-                    ratingsAfterRemoval
-            )
         } else {
             ratingsAfterRemoval = oldRatings
         }
@@ -198,10 +180,6 @@ const ModalRecipe: React.FC<ModalRecipeProps> = ({
     useEffect(() => {
         if (!loadingRating && !errorRating && ratingData) {
             setSpecificRating(ratingData.specificMealRating)
-            console.log(
-                'Data rating in lazy query:',
-                ratingData.specificMealRating
-            )
         }
     }, [ratingData, loadingRating, errorRating])
 
