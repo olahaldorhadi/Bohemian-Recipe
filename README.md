@@ -1,8 +1,4 @@
-# P2-2 Delivery instructions
-
-## Link to project - Bohemian Recipe
-
-http://it2810-39.idi.ntnu.no/project2/
+# Bohemian Recipe - IT2810 Project 2
 
 # Table of Contents
 
@@ -117,7 +113,3 @@ The data in the MongoDB database is based on TheMealDB, and we converted it to a
 The files used to populate the database can be found in the [db](./db/) directory. Before adding the data to the database, we added randomly generated ratings for each meal, in order to showcase the full rating functionality.
 
 The db directory no longer serves any function for the project, but we have chosen to keep it in case we need to repopulate the database, or if anyone is curious about our methods.
-
-## The Work of Each Developer
-
-This has been delivered, as requested, on BlackBoard.
